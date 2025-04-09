@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badminton Doubles Schedule Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .help-text {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        #results {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .summary-box {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .summary-item {
+            margin-bottom: 8px;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .team1 {
+            color: #3498db;
+        }
+        .team2 {
+            color: #9b59b6;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .sitting-out {
+            color: #e67e22;
+            font-style: italic;
+        }
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .loader::after {
+            content: "";
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            flex: 1;
+        }
+        #addSamplePlayers {
+            background-color: #27ae60;
+        }
+        #addSamplePlayers:hover {
+            background-color: #219653;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Badminton Doubles Schedule Generator</h1>
+    
+    <div class="container">
+        <div class="form-container">
+            <div class="form-group">
+                <label for="playerNames">Player Names:</label>
+                <textarea id="playerNames" placeholder="Enter one player name per line (minimum 4 players)" required>Alex
+Ben
+Charlie
+Diana
+Emma
+Frank
+Grace
+Harry</textarea>
+                <div class="help-text">Enter each player's name on a new line. You need at least 4 players for doubles games.</div>
+            </div>
+            <div class="form-group">
+                <label for="numGames">Number of Games:</label>
+                <input type="number" id="numGames" min="1" value="15" required>
+            </div>
+            <div class="form-group">
+                <button id="generateBtn">Generate Schedule</button>
+            </div>
+            <div id="errorMessage" class="error"></div>
+        </div>
+
+        <div id="loader" class="loader"></div>
+        
+        <div id="results">
+            <div class="summary-box">
+                <div id="summary"></div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Games Schedule</h2>
+                <table id="gamesTable">
+                    <thead>
+                        <tr>
+                            <th>Game</th>
+                            <th>Team 1</th>
+                            <th>Team 2</th>
+                            <th>Players Sitting Out</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Player Statistics</h2>
+                <table id="statsTable">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Games Played</th>
+                            <th>Games Sat Out</th>
+                            <th>Partnerships</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const playerNamesInput = document.getElementById('playerNames');
+            const numGamesInput = document.getElementById('numGames');
+            const generateBtn = document.getElementById('generateBtn');
+            const addSamplePlayersBtn = document.getElementById('addSamplePlayers');
+            const errorMessage = document.getElementById('errorMessage');
+            const results = document.getElementById('results');
+            const loader = document.getElementById('loader');
+            const summary = document.getElementById('summary');
+            const gamesTable = document.getElementById('gamesTable').querySelector('tbody');
+            const statsTable = document.getElementById('statsTable').querySelector('tbody');
+            
+            // Event listener for generate button
+            generateBtn.addEventListener('click', function() {
+                // Get player names and remove empty lines
+                const playerNames = playerNamesInput.value
+                    .split('\n')
+                    .map(name => name.trim())
+                    .filter(name => name.length > 0);
+                
+                const numPlayers = playerNames.length;
+                const numGames = parseInt(numGamesInput.value);
+                
+                // Input validation
+                if (numPlayers < 4) {
+                    errorMessage.textContent = 'You need at least 4 players for doubles games.';
+                    results.style.display = 'none';
+                    return;
+                }
+                
+                if (numGames < 1) {
+                    errorMessage.textContent = 'Number of games must be at least 1.';
+                    results.style.display = 'none';
+                    return;
+                }
+                
+                // Clear previous errors and results
+                errorMessage.textContent = '';
+                gamesTable.innerHTML = '';
+                statsTable.innerHTML = '';
+                results.style.display = 'none';
+                loader.style.display = 'block';
+                
+                // Generate schedule asynchronously
+                setTimeout(() => {
+                    try {
+                        const schedule = generateSchedule(numPlayers, numGames);
+                        displayResults(schedule, playerNames, numGames);
+                        loader.style.display = 'none';
+                        results.style.display = 'block';
+                    } catch (error) {
+                        errorMessage.textContent = error.message;
+                        loader.style.display = 'none';
+                    }
+                }, 10); // Small timeout to allow UI to update
+            });
+            
+            // Function to generate the badminton schedule
+            function generateSchedule(numPlayers, numGames) {
+                // Create player array (indexed from 0 to numPlayers-1)
+                const players = Array.from({ length: numPlayers }, (_, i) => i);
+                
+                // Initialize tracking arrays
+                const schedule = []; // Will hold the final schedule
+                const playerGamesCount = Array(numPlayers).fill(0); // Track games played by each player
+                const playerPairings = Array(numPlayers).fill().map(() => Array(numPlayers).fill(0)); // Track pairings
+                
+                // Calculate the average number of games each player should play
+                // Each game involves 4 players, so total player-games = numGames * 4
+                const avgGamesPerPlayer = (numGames * 4) / numPlayers;
+                
+                // Generate schedule
+                let gameNum = 0;
+                let maxAttempts = 1000; // Prevent infinite loops
+                let attempts = 0;
+                
+                while (gameNum < numGames && attempts < maxAttempts) {
+                    attempts++;
+                    
+                    // Find 4 eligible players for the next game
+                    let eligiblePlayers = [];
+                    
+                    // Sort players by games played (ascending) to prioritize those who've played less
+                    const playersByGames = [...players].sort((a, b) => playerGamesCount[a] - playerGamesCount[b]);
+                    
+                    // Select the 4 players who have played the least games
+                    // This ensures players play about the same number of games
+                    eligiblePlayers = playersByGames.slice(0, 4);
+                    
+                    // Optimize team composition to balance player pairings
+                    const bestTeams = findOptimalTeams(eligiblePlayers, playerPairings);
+                    const team1 = bestTeams[0];
+                    const team2 = bestTeams[1];
+                    
+                    // Add game to schedule
+                    schedule.push({ team1, team2 });
+                    
+                    // Update player games count
+                    [...team1, ...team2].forEach(player => {
+                        playerGamesCount[player]++;
+                    });
+                    
+                    // Update player pairings
+                    updatePairings(team1, playerPairings);
+                    updatePairings(team2, playerPairings);
+                    
+                    gameNum++;
+                }
+                
+                if (attempts >= maxAttempts && gameNum < numGames) {
+                    throw new Error(`Warning: Could only generate ${gameNum} out of ${numGames} games within constraints.`);
+                }
+                
+                return {
+                    schedule,
+                    playerGamesCount,
+                    playerPairings
+                };
+            }
+            
+            // Function to find optimal team compositions from 4 selected players
+            function findOptimalTeams(players, playerPairings) {
+                // All possible ways to split 4 players into 2 teams
+                const possibleTeams = [
+                    [[0, 1], [2, 3]],
+                    [[0, 2], [1, 3]],
+                    [[0, 3], [1, 2]]
+                ];
+                
+                let bestScore = Infinity;
+                let bestTeams = null;
+                
+                for (const teamSplit of possibleTeams) {
+                    const team1 = [players[teamSplit[0][0]], players[teamSplit[0][1]]];
+                    const team2 = [players[teamSplit[1][0]], players[teamSplit[1][1]]];
+                    
+                    // Calculate score based on how many times these players have played together
+                    const score = playerPairings[team1[0]][team1[1]] + playerPairings[team2[0]][team2[1]];
+                    
+                    if (score < bestScore) {
+                        bestScore = score;
+                        bestTeams = [team1, team2];
+                    }
+                }
+                
+                return bestTeams;
+            }
+            
+            // Function to update the pairings count after a game
+            function updatePairings(team, playerPairings) {
+                playerPairings[team[0]][team[1]]++;
+                playerPairings[team[1]][team[0]]++;
+            }
+            
+            // Function to display the results
+            function displayResults(scheduleData, playerNames, numGames) {
+                const { schedule, playerGamesCount, playerPairings } = scheduleData;
+                
+                // Calculate actual average games per player
+                const totalGamesPlayed = playerGamesCount.reduce((sum, count) => sum + count, 0);
+                const avgGamesPerPlayer = (totalGamesPlayed / playerNames.length).toFixed(1);
+                const avgSittingOut = ((schedule.length * (playerNames.length - 4)) / playerNames.length).toFixed(1);
+                
+                // Calculate min and max games played by any player
+                const minGamesPlayed = Math.min(...playerGamesCount);
+                const maxGamesPlayed = Math.max(...playerGamesCount);
+                
+                // Display summary information
+                summary.innerHTML = `
+                    <div class="summary-item"><strong>Total Players:</strong> ${playerNames.length}</div>
+                    <div class="summary-item"><strong>Total Games:</strong> ${schedule.length}</div>
+                    <div class="summary-item"><strong>Average Games Per Player:</strong> ${avgGamesPerPlayer}</div>
+                    <div class="summary-item"><strong>Average Sitting Out Per Player:</strong> ${avgSittingOut}</div>
+                    <div class="summary-item"><strong>Games Balance:</strong> Min: ${minGamesPlayed}, Max: ${maxGamesPlayed} (Variance: ${maxGamesPlayed - minGamesPlayed})</div>
+                `;
+                
+                // Display games schedule
+                schedule.forEach((game, index) => {
+                    const gameNum = index + 1;
+                    
+                    // Calculate players sitting out
+                    const playersInGame = [...game.team1, ...game.team2];
+                    const sittingOutPlayers = Array.from({ length: playerNames.length }, (_, i) => i)
+                        .filter(player => !playersInGame.includes(player));
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${gameNum}</td>
+                        <td class="team1">
+                            <span class="bold">${playerNames[game.team1[0]]}</span> & 
+                            <span class="bold">${playerNames[game.team1[1]]}</span>
+                        </td>
+                        <td class="team2">
+                            <span class="bold">${playerNames[game.team2[0]]}</span> & 
+                            <span class="bold">${playerNames[game.team2[1]]}</span>
+                        </td>
+                        <td class="sitting-out">
+                            ${sittingOutPlayers.map(player => playerNames[player]).join(', ')}
+                        </td>
+                    `;
+                    gamesTable.appendChild(row);
+                });
+                
+                // Display player statistics
+                for (let i = 0; i < playerNames.length; i++) {
+                    const row = document.createElement('tr');
+                    
+                    // Get partnerships
+                    const partnerships = [];
+                    for (let j = 0; j < playerNames.length; j++) {
+                        if (i !== j && playerPairings[i][j] > 0) {
+                            partnerships.push(`${playerNames[j]} (${playerPairings[i][j]} times)`);
+                        }
+                    }
+                    
+                    row.innerHTML = `
+                        <td><strong>${playerNames[i]}</strong></td>
+                        <td>${playerGamesCount[i]}</td>
+                        <td>${schedule.length - playerGamesCount[i]}</td>
+                        <td>${partnerships.join(', ') || 'None'}</td>
+                    `;
+                    statsTable.appendChild(row);
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
