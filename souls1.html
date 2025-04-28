@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Souls Item Locations</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+            --header-bg: #333;
+            --header-text: white;
+            --item-bg: #fff;
+            --item-hover: #f0f0f0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1a1a;
+                --text-color: #e0e0e0;
+                --header-bg: #2a2a2a;
+                --header-text: #e0e0e0;
+                --item-bg: #2a2a2a;
+                --item-hover: #333;
+            }
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+            --header-bg: #333;
+            --header-text: white;
+            --item-bg: #fff;
+            --item-hover: #f0f0f0;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --header-bg: #2a2a2a;
+            --header-text: #e0e0e0;
+            --item-bg: #2a2a2a;
+            --item-hover: #333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .location {
+            margin-bottom: 10px;
+        }
+
+        .location-header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .location-content {
+            display: none;
+            padding: 10px;
+            background-color: var(--item-bg);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .item {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: var(--item-bg);
+            border-radius: 3px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .item:hover {
+            background-color: var(--item-hover);
+        }
+
+        .item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .item label {
+            cursor: pointer;
+        }
+
+        .item.checked {
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle select {
+            padding: 8px;
+            border-radius: 4px;
+            background-color: var(--item-bg);
+            color: var(--text-color);
+            border: 1px solid var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="theme-toggle">
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select" onchange="setTheme(this.value)">
+                <option value="system">System</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+        </div>
+        <button onclick="resetAllItems()">Reset All Items</button>
+    </div>
+    
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Undead Asylum</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-0" onchange="toggleItem(this)">
+                <label for="item-0">Peculiar Doll Original Location (Only appears after returning to the Asylum via the crow, even if it's not the Doll.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-1" onchange="toggleItem(this)">
+                <label for="item-1">Black Knights Drop (Sword Black Knights, guarding the Peculiar Doll location and the starting weapon location. The first Knight you kill (whichever one it is) will drop the item. Both Knights drop an upgrade material, however.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Firelink Shrine</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-2" onchange="toggleItem(this)">
+                <label for="item-2">Chest #1 (Overlooking graveyard, in the secret area under elevator.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-3" onchange="toggleItem(this)">
+                <label for="item-3">Chest #2 (In the secret area under the elevator.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-4" onchange="toggleItem(this)">
+                <label for="item-4">Chest #3 (In the secret area under the elevator.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-5" onchange="toggleItem(this)">
+                <label for="item-5">Chest #4 (In the secret area under the elevator.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-6" onchange="toggleItem(this)">
+                <label for="item-6">Undead Asylum F2 West Key Original Location (On top of the roof. Use the elevator to access.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Undead Burg</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-7" onchange="toggleItem(this)">
+                <label for="item-7">Chest #1 (In the house near the bonfire. Normally has Black Firebombs.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-8" onchange="toggleItem(this)">
+                <label for="item-8">Chest #2 (In the locked house near the Black Knight. Needs the Residence Key or the Master Key to access, or an extremely tricky jump. Normally has Gold Pine Resin x3.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-9" onchange="toggleItem(this)">
+                <label for="item-9">Black Knight (Sword Black Knight normally guarding the Blue Tearstone Ring.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Undead Parish</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-10" onchange="toggleItem(this)">
+                <label for="item-10">Mystery Key Original Location (In the lower corner of the room with all the Hollows, after the Boar. Behind a picnic table.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-11" onchange="toggleItem(this)">
+                <label for="item-11">Basement Key Original Location (Just after the portcullis on the ground.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-12" onchange="toggleItem(this)">
+                <label for="item-12">Black Knight (Greatsword Black Knight in the tower after Hellkite Drake.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Depths</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-13" onchange="toggleItem(this)">
+                <label for="item-13">Sewer Chamber Key Original Location (Leaning against the bars near the Giant Rat.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-14" onchange="toggleItem(this)">
+                <label for="item-14">Chest (Near the Butcher, normally holds the Large Ember)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Blighttown</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-15" onchange="toggleItem(this)">
+                <label for="item-15">Chest #1 (At the entrance to the Valley of Drakes, at the top of the wooden structure. Normally holds the Key to New Londo Ruins.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-16" onchange="toggleItem(this)">
+                <label for="item-16">Chest #2 (In the large circular room near the swamp bonfire. Normally holds a Dragon Scale.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-17" onchange="toggleItem(this)">
+                <label for="item-17">Chest #3 (At the end of the walkway past the slippery branch near the waterwheel elevator. You can also skip the branch by dropping down to it from platforms above (before you go down the elevator), but you must run back across the branch to leave.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Sen's Fortress</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-18" onchange="toggleItem(this)">
+                <label for="item-18">Chest #1 (At the end of the large straight ball ramp near Seigmeyer of Catarina, in a small room. Normally holds the Ring of Steel Protection.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-19" onchange="toggleItem(this)">
+                <label for="item-19">Chest #2 (Just past the second set of swinging blades, guarded by an arrow trap. Normally holds Large Titanite Shard x2.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-20" onchange="toggleItem(this)">
+                <label for="item-20">Chest #3 (In the tower guarded by Undead Prince Ricard.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-21" onchange="toggleItem(this)">
+                <label for="item-21">Chest #4 (In a corner of the roof, guarded by a Balder Knight. Normally holds the Flame Stoneplate Ring. Turn right as you go through the fog gate to the roof.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-22" onchange="toggleItem(this)">
+                <label for="item-22">Chest #5 (In the tower guarded by Undead Prince Ricard.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-23" onchange="toggleItem(this)">
+                <label for="item-23">Cage Key Original Location (At the bottom of Crestfallen Merchant's tower.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Anor Londo</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-24" onchange="toggleItem(this)">
+                <label for="item-24">Chest #1 (Hidden behind the bottom of the automatic screw elevator. Normally holds Demon Titanite.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-25" onchange="toggleItem(this)">
+                <label for="item-25">Chest #2 (On a ledge in the painting room. Requires a jump / drop from the rafters.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-26" onchange="toggleItem(this)">
+                <label for="item-26">Chest #3 (In a hidden room behind an illusory wall in a fireplace.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-27" onchange="toggleItem(this)">
+                <label for="item-27">Chest #4 (In a hidden room behind an illusory wall in a fireplace.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-28" onchange="toggleItem(this)">
+                <label for="item-28">Chest #5 (In a hidden room behind an illusory wall in a fireplace.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-29" onchange="toggleItem(this)">
+                <label for="item-29">Chest #6 (In a hidden room behind an illusory wall in a fireplace.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-30" onchange="toggleItem(this)">
+                <label for="item-30">Chest #7 (In a room with many dragon trophies, guarded by a Silver Knight. Normally has half of the Silver Knight Set.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-31" onchange="toggleItem(this)">
+                <label for="item-31">Chest #8 (In a room with many dragon trophies, guarded by a Silver Knight. Normally has half of the Silver Knight Set.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-32" onchange="toggleItem(this)">
+                <label for="item-32">Chest #9 (In a room with three Silver Knights; Seigmeyer of Catarina is trapped nearby. Normally has Demon Titanite x2.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-33" onchange="toggleItem(this)">
+                <label for="item-33">Chest #10 (Behind the Giant Blacksmith. Normally has the Hawk Ring.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-34" onchange="toggleItem(this)">
+                <label for="item-34">Chest #11 (In Darkmoon Tomb, after defeating Dark Sun Gwyndolin.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-35" onchange="toggleItem(this)">
+                <label for="item-35">Chest #12 (In Darkmoon Tomb, after defeating Dark Sun Gwyndolin. This chest is normally empty, but can have an item after randomization.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-36" onchange="toggleItem(this)">
+                <label for="item-36">Chest #13 (In Darkmoon Tomb, after defeating Dark Sun Gwyndolin.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-37" onchange="toggleItem(this)">
+                <label for="item-37">Chest #14 (In the room that leads to Duke's Archives, guarded by two Giant Sentinels. A Mimic is nearby: this chest is on the left, the Mimic is on the right.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-38" onchange="toggleItem(this)">
+                <label for="item-38">Chest #15 (In the room that leads to Sen's Fortress, guarded by two Giant Sentinels.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-39" onchange="toggleItem(this)">
+                <label for="item-39">Chest #16 (In the room across from the bonfire where Knight Solaire rests, guarded by a Silver Knight.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">New Londo Ruins</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-40" onchange="toggleItem(this)">
+                <label for="item-40">Chest #1 (In a small room behind an illusory wall in lower New Londo Ruins. The walkway after the illusory wall is very thin. Normally holds a Titanite Chunk.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-41" onchange="toggleItem(this)">
+                <label for="item-41">Chest #2 (On the third floor of the main building. Requires draining the water. Normally holds the Very Large Ember.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-42" onchange="toggleItem(this)">
+                <label for="item-42">Chest #3 (In the corner of the bottom floor of Ingward's building, just before the fog gate to the Four Kings. Normally holds a Titanite Chunk.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">The Duke's Archives</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-43" onchange="toggleItem(this)">
+                <label for="item-43">Chest #1 (On the top of a bookshelf in the first large area. Requires a drop from an upper floor or the spinning staircase. Normally holds the Avelyn.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-44" onchange="toggleItem(this)">
+                <label for="item-44">Chest #2 (In the room with broken machinery; a fog gate nearby leads to the outside grounds and Crystal Cave. Normally holds Prism Stone x20.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-45" onchange="toggleItem(this)">
+                <label for="item-45">Archive Prison Extra Key Original Location (In a side cell in the Prison. The cell's door can be opened using the Archive Tower Cell Key, which is always dropped by the sleeping Serpent Soldier outside the bonfire cell.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-46" onchange="toggleItem(this)">
+                <label for="item-46">Chest #3 (On the second floor of the first large book area. Take a left when running up the stairs from the first floor. Taking a right will lead to a Mimic.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-47" onchange="toggleItem(this)">
+                <label for="item-47">Chest #4 (On the third floor of the first large book area, near the elevator. This area must be accessed from the second large book area, or by doing Duke Skip.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-48" onchange="toggleItem(this)">
+                <label for="item-48">Chest #5 (In the room where the invincible Seath the Scaleless is encountered. Appears after Seath the Scaleless has been defeated in Crystal Cave.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-49" onchange="toggleItem(this)">
+                <label for="item-49">Chest #6 (On the fourth floor of the second large book area, on the left side when facing the balcony bonfire.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-50" onchange="toggleItem(this)">
+                <label for="item-50">Chest #7 (In the side area behind the movable bookcase, where the freed Big Hat Logan sits. Note that the chest that appears when Logan hollows is *not* a key location, since it is possible to miss by not freeing Logan or killing him.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-51" onchange="toggleItem(this)">
+                <label for="item-51">Chest #8 (In the room behind the movable bookcase.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-52" onchange="toggleItem(this)">
+                <label for="item-52">Chest #9 (In the room behind the movable bookcase.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-53" onchange="toggleItem(this)">
+                <label for="item-53">Chest #10 (In the room behind the movable bookcase.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-54" onchange="toggleItem(this)">
+                <label for="item-54">Chest #11 (In the Prison, on the balcony with the noise mechanism.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-55" onchange="toggleItem(this)">
+                <label for="item-55">Special Golem (The item only drops after Dusk of Oolacile has been saved from the Golden Crystal Golem in Darkroot Basin.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Painted World</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-56" onchange="toggleItem(this)">
+                <label for="item-56">Annex Key Original Location (At the end of an underground passage behind illusory walls, guarded by a Bonewheel Skeleton.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-57" onchange="toggleItem(this)">
+                <label for="item-57">Andre Statue (In the Annex, requires the Annex Key or a tricky jump.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-58" onchange="toggleItem(this)">
+                <label for="item-58">Chest (In the basement of the second large building. Drop down into the area, or use the ladder from the attic of the large room with all the Engorged Hollows. Normally has the Painting Guardian Set.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Darkroot Garden/Basin</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-59" onchange="toggleItem(this)">
+                <label for="item-59">Andre Statue (After fighting the Moonlight Butterfly. Holds three items or more, two of which can be key items.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-60" onchange="toggleItem(this)">
+                <label for="item-60">Chest #1 (In a pool of water surrounded by Mushroom Children and Mushroom Parents. Normally has the Enchanted Ember.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-61" onchange="toggleItem(this)">
+                <label for="item-61">Chest #2 (When running from the bonfire to Sif, just after Alvina, behind the stone tower. Normally has the Stone Set.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-62" onchange="toggleItem(this)">
+                <label for="item-62">Black Knight (Halberd Black Knight on the way down from Darkroot Forest to Darkroot Basin. Loved/hated by speedrunners.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Catacombs/Tomb of the Giants</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-63" onchange="toggleItem(this)">
+                <label for="item-63">Darkmoon Seance Ring Original Location (In an open coffin, past the Giant Skeleton that falls down on you as you approach. You need to smash the obviously breakable wall to reach this area.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-64" onchange="toggleItem(this)">
+                <label for="item-64">Andre Statue (In the room near the first bonfire, with several Giant Skeletons. You'll probably die in here unless you're extremely lucky.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-65" onchange="toggleItem(this)">
+                <label for="item-65">Black Knight (Greataxe Black Knight. After turning right from the Titanite Demon, drop through the collapsing floor after climbing down a ladder. Prepare to get one-shot by an immediate overhand slam of the greataxe.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-66" onchange="toggleItem(this)">
+                <label for="item-66">Black Knight (Halberd Black Knight, just after the fog gate near the first bonfire and Patches, on a lower level.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Great Hollow</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-67" onchange="toggleItem(this)">
+                <label for="item-67">Chest (At the very start of the Great Hollow, behind the first illusory wall. There are no key item locations any further in the Great Hollow, this is as far as you have to go.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Demon Ruins/Lost Izalith</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-68" onchange="toggleItem(this)">
+                <label for="item-68">Chest #1 (At the end of the side area guarded by Burrowing Rockworms. Take a left as you approach Demon Firesage's arena. Normally holds the Chaos Flame Ember.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-69" onchange="toggleItem(this)">
+                <label for="item-69">Chest #1 (At the end of a passage in the swamp area with the Chaos Eaters. Allow the floor to break, and then drop straight down to land above the entrance to the passage.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-70" onchange="toggleItem(this)">
+                <label for="item-70">Chest #2 (Inside the first square tower in the lava area with all the Bounding Demons (Dragon Butts))</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-71" onchange="toggleItem(this)">
+                <label for="item-71">Chest #3 (Around a corner if you continue straight when approaching the Bed of Chaos arena. Guarded by a Chaos Eater. Normally holds Pyromancy: Chaos Fire Whip.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-72" onchange="toggleItem(this)">
+                <label for="item-72">Ember Location (In the lava where Ceaseless Discharge stands before being defeated, guarded by several Taurus Demons. Normally has the Chaos Flame Ember.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Royal Wood/Oolacile Township</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-73" onchange="toggleItem(this)">
+                <label for="item-73">Chest #1 (In a pool of water guarded by many enemies, just after exiting Oolacile Sanctuary. Normally has a Blue Titanite Slab.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-74" onchange="toggleItem(this)">
+                <label for="item-74">Chest #1 (Past the ledge you jump from to reach the second Mimic. Needs a tricky jump, or a light source to open an illusory wall.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-75" onchange="toggleItem(this)">
+                <label for="item-75">Chest #2 (In a room of the structure after the Oolacile Township bonfire, but before the first Mimic. Requires a light source to open the illusory wall; the wall is marked with a developer summon sign.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-76" onchange="toggleItem(this)">
+                <label for="item-76">Chest #3 (In the basement of one of the buildings near the previous item, guarded by two Bloathead Sorcerers. There are several other open empty chests nearby.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-77" onchange="toggleItem(this)">
+                <label for="item-77">Chest #2 (Hidden behind the far waterfall in Kalameet's arena.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-78" onchange="toggleItem(this)">
+                <label for="item-78">2nd Mimic - Crest Key Original Location (Unlike Mimics elsewhere in the game, this Mimic's drop will not despawn if you die or warp before picking it up.)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">Boss Drops</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-79" onchange="toggleItem(this)">
+                <label for="item-79">Gaping Dragon Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-80" onchange="toggleItem(this)">
+                <label for="item-80">Capra Demon Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-81" onchange="toggleItem(this)">
+                <label for="item-81">Crossbreed Priscilla Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-82" onchange="toggleItem(this)">
+                <label for="item-82">Moonlight Butterfly Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-83" onchange="toggleItem(this)">
+                <label for="item-83">Great Gray Wolf, Sif Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-84" onchange="toggleItem(this)">
+                <label for="item-84">Pinwheel Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-85" onchange="toggleItem(this)">
+                <label for="item-85">Gravelord Nito Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-86" onchange="toggleItem(this)">
+                <label for="item-86">Chaos Witch Quelaag Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-87" onchange="toggleItem(this)">
+                <label for="item-87">Bed of Chaos Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-88" onchange="toggleItem(this)">
+                <label for="item-88">Iron Golem Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-89" onchange="toggleItem(this)">
+                <label for="item-89">Dark Sun Gwyndolin Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-90" onchange="toggleItem(this)">
+                <label for="item-90">Dragon Slayer Ornstein and Executioner Smough Drop (Whichever one you kill last will drop the key item. Note that Gwynevere no longer has a key item and can be killed immediately or ignored entirely if you feel like it, unless Senile Gwynevere is OFF in which case she will still have the Lordvessel.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-91" onchange="toggleItem(this)">
+                <label for="item-91">Four Kings Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-92" onchange="toggleItem(this)">
+                <label for="item-92">Seath the Scaleless Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-93" onchange="toggleItem(this)">
+                <label for="item-93">Gwyn, Lord of Cinder Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-94" onchange="toggleItem(this)">
+                <label for="item-94">Centipede Demon Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-95" onchange="toggleItem(this)">
+                <label for="item-95">Sanctuary Guardian Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-96" onchange="toggleItem(this)">
+                <label for="item-96">Knight Artorias Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-97" onchange="toggleItem(this)">
+                <label for="item-97">Manus, Father of the Abyss Drop</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-98" onchange="toggleItem(this)">
+                <label for="item-98">Black Dragon Kalameet Drop</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="location">
+        <div class="location-header" onclick="toggleSection(this)">NPC Drops/Shop Items</div>
+        <div class="location-content">
+            <div class="item">
+                <input type="checkbox" id="item-99" onchange="toggleItem(this)">
+                <label for="item-99">Ingward Gift / Drop (Ingward only gifts you this item if you have found the Lordvessel. His dialogue glitches out if you have used the Key to the Seal, and you'll have to kill him to get the item.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-100" onchange="toggleItem(this)">
+                <label for="item-100">Andre of Astora shop item / drop (The key item will be sold by Andre if he drops it and vice versa. You don't need to kill him to find out what it is.)</label>
+            </div>
+            <div class="item">
+                <input type="checkbox" id="item-101" onchange="toggleItem(this)">
+                <label for="item-101">Undead Merchant shop item / drop (Same idea as with Andre.)</label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme management
+        function setTheme(theme) {
+            const html = document.documentElement;
+            if (theme === 'system') {
+                html.removeAttribute('data-theme');
+            } else {
+                html.setAttribute('data-theme', theme);
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        // Initialize theme from localStorage or system preference
+        const savedTheme = localStorage.getItem('theme') || 'system';
+        const themeSelect = document.getElementById('theme-select');
+        themeSelect.value = savedTheme;
+        setTheme(savedTheme);
+
+        // Item state management
+        function saveItemState(itemId, isChecked) {
+            const states = JSON.parse(localStorage.getItem('itemStates') || '{}');
+            states[itemId] = isChecked;
+            localStorage.setItem('itemStates', JSON.stringify(states));
+        }
+
+        function loadItemStates() {
+            const states = JSON.parse(localStorage.getItem('itemStates') || '{}');
+            document.querySelectorAll('.item').forEach((item, index) => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                const itemId = `item-${index}`;
+                checkbox.id = itemId;
+                const label = item.querySelector('label');
+                label.htmlFor = itemId;
+                checkbox.checked = states[itemId] || false;
+                toggleItem(checkbox);
+            });
+        }
+
+        function resetAllItems() {
+            localStorage.removeItem('itemStates');
+            document.querySelectorAll('.item input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+                toggleItem(checkbox);
+            });
+        }
+
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function toggleItem(checkbox) {
+            const item = checkbox.parentElement;
+            item.classList.toggle('checked', checkbox.checked);
+            saveItemState(checkbox.id, checkbox.checked);
+            updateSectionCounts();
+        }
+
+        function updateSectionCounts() {
+            document.querySelectorAll('.location').forEach(location => {
+                const header = location.querySelector('.location-header');
+                const items = location.querySelectorAll('.item');
+                const checkedItems = location.querySelectorAll('.item.checked');
+                const countText = ` (${checkedItems.length}/${items.length})`;
+                
+                // Remove any existing count text
+                header.textContent = header.textContent.replace(/ \(\d+\/\d+\)$/, '');
+                // Add the new count
+                header.textContent += countText;
+            });
+        }
+
+        // Initialize all sections as collapsed and load saved states
+        document.addEventListener('DOMContentLoaded', function() {
+            const contents = document.querySelectorAll('.location-content');
+            contents.forEach(content => {
+                content.style.display = 'none';
+            });
+            loadItemStates();
+            updateSectionCounts();
+        });
+    </script>
+</body>
+</html> 
