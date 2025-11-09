@@ -1,0 +1,174 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Skittles League//Fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Kevin Archer - Skittles Fixtures
+X-WR-CALDESC:Fixtures for Kevin Archer
+X-WR-TIMEZONE:Europe/London
+BEGIN:VEVENT
+UID:skittles-K Archer-0-1758063600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250916T230000Z
+DTEND:20250917T010000Z
+SUMMARY:Home vs D Maxwell
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nHome fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-1-1759273200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250930T230000Z
+DTEND:20251001T010000Z
+SUMMARY:Away vs M Wall
+DESCRIPTION:Type: League Fixture\\nVenue: The Bason Bridge Inn\, Bason Bridge\, TA9 4RL\\nAway fixture for Kevin Archer
+LOCATION:The Bason Bridge Inn\, Bason Bridge\, TA9 4RL
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-2-1759878000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251007T230000Z
+DTEND:20251008T010000Z
+SUMMARY:Home vs Winner of E
+DESCRIPTION:Type: Knock Out Cup First Round\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nHome fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-3-1760482800000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251014T230000Z
+DTEND:20251015T010000Z
+SUMMARY:Home vs B Stephens
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nHome fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-4-1761087600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251021T230000Z
+DTEND:20251022T010000Z
+SUMMARY:Away vs A Fear
+DESCRIPTION:Type: League Fixture\\nVenue: Watchfield Inn\, TA9 4RD\\nAway fixture for Kevin Archer
+LOCATION:Watchfield Inn\, TA9 4RD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-5-1762905600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251112T000000Z
+DTEND:20251112T020000Z
+SUMMARY:Home vs P Baker
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nHome fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-6-1764115200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251126T000000Z
+DTEND:20251126T020000Z
+SUMMARY:Away vs P Baker
+DESCRIPTION:Type: League Fixture\\nVenue: The Sexeys Arms\, Blackford\, BS28 4NT\\nAway fixture for Kevin Archer
+LOCATION:The Sexeys Arms\, Blackford\, BS28 4NT
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-7-1764720000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251203T000000Z
+DTEND:20251203T020000Z
+SUMMARY:Home vs M Turner
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nHome fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-8-1765929600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251217T000000Z
+DTEND:20251217T020000Z
+SUMMARY:Away vs C Abbiss
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nAway fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-9-1767744000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260107T000000Z
+DTEND:20260107T020000Z
+SUMMARY:Home vs M Anderson
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nHome fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-10-1768953600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260121T000000Z
+DTEND:20260121T020000Z
+SUMMARY:Away vs R Stone
+DESCRIPTION:Type: League Fixture\\nVenue: The Red Tile\, Cossington\, TA7 8LN\\nAway fixture for Kevin Archer
+LOCATION:The Red Tile\, Cossington\, TA7 8LN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-11-1769558400000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260128T000000Z
+DTEND:20260128T020000Z
+SUMMARY:Home vs P Clatworthy
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nHome fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-12-1770163200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260204T000000Z
+DTEND:20260204T020000Z
+SUMMARY:Away vs M Willmington
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nAway fixture for Kevin Archer
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-13-1771372800000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260218T000000Z
+DTEND:20260218T020000Z
+SUMMARY:Home vs M Tilley
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nHome fixture for Kevin Archer
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-K Archer-14-1771891200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260224T000000Z
+DTEND:20260224T020000Z
+SUMMARY:Away vs S Midgley
+DESCRIPTION:Type: League Fixture\\nVenue: The White Hart\, Cross\, BS26 2EE\\nAway fixture for Kevin Archer
+LOCATION:The White Hart\, Cross\, BS26 2EE
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+END:VCALENDAR

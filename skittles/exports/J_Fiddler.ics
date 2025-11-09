@@ -1,0 +1,185 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Skittles League//Fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Josh Fiddler - Skittles Fixtures
+X-WR-CALDESC:Fixtures for Josh Fiddler
+X-WR-TIMEZONE:Europe/London
+BEGIN:VEVENT
+UID:skittles-J Fiddler-0-1758063600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250916T230000Z
+DTEND:20250917T010000Z
+SUMMARY:Home vs M Tilley
+DESCRIPTION:Type: League Fixture\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nHome fixture for Josh Fiddler
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-1-1758668400000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250923T230000Z
+DTEND:20250924T010000Z
+SUMMARY:Away vs S Midgley
+DESCRIPTION:Type: Knock Out Cup Preliminary Round (D)\\nVenue: The White Hart\, Cross\, BS26 2EE\\nAway fixture for Josh Fiddler
+LOCATION:The White Hart\, Cross\, BS26 2EE
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-2-1759273200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250930T230000Z
+DTEND:20251001T010000Z
+SUMMARY:Away vs S Midgley
+DESCRIPTION:Type: League Fixture\\nVenue: The White Hart\, Cross\, BS26 2EE\\nAway fixture for Josh Fiddler
+LOCATION:The White Hart\, Cross\, BS26 2EE
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-3-1760482800000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251014T230000Z
+DTEND:20251015T010000Z
+SUMMARY:Home vs D Maxwell
+DESCRIPTION:Type: League Fixture\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nHome fixture for Josh Fiddler
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-4-1761087600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251021T230000Z
+DTEND:20251022T010000Z
+SUMMARY:Away vs M Wall
+DESCRIPTION:Type: League Fixture\\nVenue: The Bason Bridge Inn\, Bason Bridge\, TA9 4RL\\nAway fixture for Josh Fiddler
+LOCATION:The Bason Bridge Inn\, Bason Bridge\, TA9 4RL
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-5-1762905600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251112T000000Z
+DTEND:20251112T020000Z
+SUMMARY:Home vs B Stephens
+DESCRIPTION:Type: League Fixture\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nHome fixture for Josh Fiddler
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-6-1764115200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251126T000000Z
+DTEND:20251126T020000Z
+SUMMARY:Away vs A Fear
+DESCRIPTION:Type: League Fixture\\nVenue: Watchfield Inn\, TA9 4RD\\nAway fixture for Josh Fiddler
+LOCATION:Watchfield Inn\, TA9 4RD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-7-1764720000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251203T000000Z
+DTEND:20251203T020000Z
+SUMMARY:Home vs P Baker
+DESCRIPTION:Type: League Fixture\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nHome fixture for Josh Fiddler
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-8-1765929600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251217T000000Z
+DTEND:20251217T020000Z
+SUMMARY:Away vs B Cox
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Worle\, BS22 6JA\\nAway fixture for Josh Fiddler
+LOCATION:The Lamb Inn\, Worle\, BS22 6JA
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-9-1767744000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260107T000000Z
+DTEND:20260107T020000Z
+SUMMARY:Home vs M Turner
+DESCRIPTION:Type: League Fixture\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nHome fixture for Josh Fiddler
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-10-1768953600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260121T000000Z
+DTEND:20260121T020000Z
+SUMMARY:Away vs C Abbiss
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nAway fixture for Josh Fiddler
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-11-1769558400000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260128T000000Z
+DTEND:20260128T020000Z
+SUMMARY:Home vs M Anderson
+DESCRIPTION:Type: League Fixture\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nHome fixture for Josh Fiddler
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-12-1770163200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260204T000000Z
+DTEND:20260204T020000Z
+SUMMARY:Away vs R Stone
+DESCRIPTION:Type: League Fixture\\nVenue: The Red Tile\, Cossington\, TA7 8LN\\nAway fixture for Josh Fiddler
+LOCATION:The Red Tile\, Cossington\, TA7 8LN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-13-1771372800000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260218T000000Z
+DTEND:20260218T020000Z
+SUMMARY:Home vs P Clatworthy
+DESCRIPTION:Type: League Fixture\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nHome fixture for Josh Fiddler
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-14-1771891200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260224T000000Z
+DTEND:20260224T020000Z
+SUMMARY:Away vs M Willmington
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nAway fixture for Josh Fiddler
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-J Fiddler-15-1773187200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260311T000000Z
+DTEND:20260311T020000Z
+SUMMARY:Home vs J Torrens-Spence
+DESCRIPTION:Type: Captains Cup Night (Alley 1\, 7:30)\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nHome fixture for Josh Fiddler
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+END:VCALENDAR

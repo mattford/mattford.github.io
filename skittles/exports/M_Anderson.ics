@@ -1,0 +1,163 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Skittles League//Fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Mike Anderson - Skittles Fixtures
+X-WR-CALDESC:Fixtures for Mike Anderson
+X-WR-TIMEZONE:Europe/London
+BEGIN:VEVENT
+UID:skittles-M Anderson-0-1758063600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250916T230000Z
+DTEND:20250917T010000Z
+SUMMARY:Away vs J Southwood
+DESCRIPTION:Type: League Fixture\\nVenue: The Bason Bridge Inn\, Bason Bridge\, TA9 4RL\\nAway fixture for Mike Anderson
+LOCATION:The Bason Bridge Inn\, Bason Bridge\, TA9 4RL
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-1-1758668400000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250923T230000Z
+DTEND:20250924T010000Z
+SUMMARY:Home vs M Turner
+DESCRIPTION:Type: Knock Out Cup Preliminary Round (J)\\nVenue: The Lamb Inn\, Axbridge\, BS26 2AP\\nHome fixture for Mike Anderson
+LOCATION:The Lamb Inn\, Axbridge\, BS26 2AP
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-2-1759273200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250930T230000Z
+DTEND:20251001T010000Z
+SUMMARY:Home vs A Pinn
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Axbridge\, BS26 2AP\\nHome fixture for Mike Anderson
+LOCATION:The Lamb Inn\, Axbridge\, BS26 2AP
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-3-1760482800000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251014T230000Z
+DTEND:20251015T010000Z
+SUMMARY:Away vs S Hutchings
+DESCRIPTION:Type: League Fixture\\nVenue: The White Hart\, Cross\, BS26 2EE\\nAway fixture for Mike Anderson
+LOCATION:The White Hart\, Cross\, BS26 2EE
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-4-1761087600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251021T230000Z
+DTEND:20251022T010000Z
+SUMMARY:Home vs J Goodall
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Axbridge\, BS26 2AP\\nHome fixture for Mike Anderson
+LOCATION:The Lamb Inn\, Axbridge\, BS26 2AP
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-5-1762905600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251112T000000Z
+DTEND:20251112T020000Z
+SUMMARY:Away vs C Pegler
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nAway fixture for Mike Anderson
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-6-1764115200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251126T000000Z
+DTEND:20251126T020000Z
+SUMMARY:Home vs M Woodliffe
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Axbridge\, BS26 2AP\\nHome fixture for Mike Anderson
+LOCATION:The Lamb Inn\, Axbridge\, BS26 2AP
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-7-1764720000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251203T000000Z
+DTEND:20251203T020000Z
+SUMMARY:Away vs S Clatworthy
+DESCRIPTION:Type: League Fixture\\nVenue: The Red Tile\, Cossington\, TA7 8LN\\nAway fixture for Mike Anderson
+LOCATION:The Red Tile\, Cossington\, TA7 8LN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-8-1765929600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251217T000000Z
+DTEND:20251217T020000Z
+SUMMARY:Home vs J Torrens-Spence
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Axbridge\, BS26 2AP\\nHome fixture for Mike Anderson
+LOCATION:The Lamb Inn\, Axbridge\, BS26 2AP
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-9-1767744000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260107T000000Z
+DTEND:20260107T020000Z
+SUMMARY:Away vs K Archer
+DESCRIPTION:Type: League Fixture\\nVenue: The Brent Knoll Inn\, East Brent\, TA9 4JG\\nAway fixture for Mike Anderson
+LOCATION:The Brent Knoll Inn\, East Brent\, TA9 4JG
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-10-1769558400000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260128T000000Z
+DTEND:20260128T020000Z
+SUMMARY:Away vs J Fiddler
+DESCRIPTION:Type: League Fixture\\nVenue: Winscombe Club\, Winscombe\, BS25 1HD\\nAway fixture for Mike Anderson
+LOCATION:Winscombe Club\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-11-1770163200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260204T000000Z
+DTEND:20260204T020000Z
+SUMMARY:Home vs M Rippon
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Axbridge\, BS26 2AP\\nHome fixture for Mike Anderson
+LOCATION:The Lamb Inn\, Axbridge\, BS26 2AP
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-12-1771372800000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260218T000000Z
+DTEND:20260218T020000Z
+SUMMARY:Away vs I Durston
+DESCRIPTION:Type: League Fixture\\nVenue: BASC Ground Burnham on Sea\, TA8 2BS\\nAway fixture for Mike Anderson
+LOCATION:BASC Ground Burnham on Sea\, TA8 2BS
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Anderson-13-1771891200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260224T000000Z
+DTEND:20260224T020000Z
+SUMMARY:Home vs P McErlcan
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Axbridge\, BS26 2AP\\nHome fixture for Mike Anderson
+LOCATION:The Lamb Inn\, Axbridge\, BS26 2AP
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+END:VCALENDAR

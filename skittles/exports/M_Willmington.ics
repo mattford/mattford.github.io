@@ -1,0 +1,174 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Skittles League//Fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Martyn Willmington - Skittles Fixtures
+X-WR-CALDESC:Fixtures for Martyn Willmington
+X-WR-TIMEZONE:Europe/London
+BEGIN:VEVENT
+UID:skittles-M Willmington-0-1758063600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250916T230000Z
+DTEND:20250917T010000Z
+SUMMARY:Away vs M Rippon
+DESCRIPTION:Type: League Fixture\\nVenue: The New Inn\, Wedmore\, BS28 4DU\\nAway fixture for Martyn Willmington
+LOCATION:The New Inn\, Wedmore\, BS28 4DU
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-1-1758668400000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250923T230000Z
+DTEND:20250924T010000Z
+SUMMARY:Away vs B Stephens
+DESCRIPTION:Type: Knock Out Cup Preliminary Round (I)\\nVenue: The Lamb Inn\, Weare\, BS26 2JF\\nAway fixture for Martyn Willmington
+LOCATION:The Lamb Inn\, Weare\, BS26 2JF
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-2-1759273200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20250930T230000Z
+DTEND:20251001T010000Z
+SUMMARY:Home vs I Durston
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nHome fixture for Martyn Willmington
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-3-1760482800000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251014T230000Z
+DTEND:20251015T010000Z
+SUMMARY:Away vs P McErlcan
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Weare\, BS26 2JF\\nAway fixture for Martyn Willmington
+LOCATION:The Lamb Inn\, Weare\, BS26 2JF
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-4-1761087600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251021T230000Z
+DTEND:20251022T010000Z
+SUMMARY:Home vs J Southwood
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nHome fixture for Martyn Willmington
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-5-1762905600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251112T000000Z
+DTEND:20251112T020000Z
+SUMMARY:Away vs A Pinn
+DESCRIPTION:Type: League Fixture\\nVenue: The Woodborough Hotel\, Winscombe\, BS25 1HD\\nAway fixture for Martyn Willmington
+LOCATION:The Woodborough Hotel\, Winscombe\, BS25 1HD
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-6-1764115200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251126T000000Z
+DTEND:20251126T020000Z
+SUMMARY:Home vs S Hutchings
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nHome fixture for Martyn Willmington
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-7-1764720000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251203T000000Z
+DTEND:20251203T020000Z
+SUMMARY:Away vs J Goodall
+DESCRIPTION:Type: League Fixture\\nVenue: Wellington Arms\, Rooksbridge\, BS26 2TE\\nAway fixture for Martyn Willmington
+LOCATION:Wellington Arms\, Rooksbridge\, BS26 2TE
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-8-1765929600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20251217T000000Z
+DTEND:20251217T020000Z
+SUMMARY:Home vs C Pegler
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nHome fixture for Martyn Willmington
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-9-1767744000000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260107T000000Z
+DTEND:20260107T020000Z
+SUMMARY:Away vs M Woodliffe
+DESCRIPTION:Type: League Fixture\\nVenue: The Duck\, Burtle\, TA7 8NU\\nAway fixture for Martyn Willmington
+LOCATION:The Duck\, Burtle\, TA7 8NU
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-10-1768953600000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260121T000000Z
+DTEND:20260121T020000Z
+SUMMARY:Home vs S Clatworthy
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nHome fixture for Martyn Willmington
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-11-1769558400000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260128T000000Z
+DTEND:20260128T020000Z
+SUMMARY:Away vs J Torrens-Spence
+DESCRIPTION:Type: League Fixture\\nVenue: The Lamb Inn\, Axbridge\, BS26 2AP\\nAway fixture for Martyn Willmington
+LOCATION:The Lamb Inn\, Axbridge\, BS26 2AP
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-12-1770163200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260204T000000Z
+DTEND:20260204T020000Z
+SUMMARY:Home vs K Archer
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nHome fixture for Martyn Willmington
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-13-1771891200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260224T000000Z
+DTEND:20260224T020000Z
+SUMMARY:Home vs J Fiddler
+DESCRIPTION:Type: League Fixture\\nVenue: The Lympsham Pavilion\, Lympsham\, BS24 0DN\\nHome fixture for Martyn Willmington
+LOCATION:The Lympsham Pavilion\, Lympsham\, BS24 0DN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:skittles-M Willmington-14-1773187200000@skittlesleague
+DTSTAMP:20251109T124505Z
+DTSTART:20260311T000000Z
+DTEND:20260311T020000Z
+SUMMARY:Away vs M Turner
+DESCRIPTION:Type: Captains Cup Night (Alley 2\, 8:15)\\nVenue: The Coopers\, Highbridge\, TA9 3BT\\nAway fixture for Martyn Willmington
+LOCATION:The Coopers\, Highbridge\, TA9 3BT
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+END:VCALENDAR
