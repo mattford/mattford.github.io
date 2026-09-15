@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skittles League Fixtures</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .team-selector {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .team-selector label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .team-selector select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .team-selector select:hover {
+            border-color: #667eea;
+        }
+
+        .team-selector select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .hero-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .hero-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .hero-section .fixture-date {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-section .fixture-teams {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .hero-section .fixture-address {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .directions-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .directions-button:hover {
+            background: #357ae8;
+        }
+
+        .directions-button:active {
+            background: #2d6bc7;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #34a853;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .download-button:hover {
+            background: #2d8f47;
+        }
+
+        .download-button:active {
+            background: #267d3e;
+        }
+
+        .hero-map {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .fixtures-list {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .fixtures-list h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .fixture-item {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .fixture-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .fixture-header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+        }
+
+        .fixture-header .fixture-teams {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .fixture-header .fixture-date {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .fixture-details {
+            display: none;
+            padding: 20px;
+            background: white;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .fixture-details.expanded {
+            display: block;
+        }
+
+        .fixture-details .fixture-address {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .fixture-details .directions-button {
+            margin-bottom: 15px;
+        }
+
+        .fixture-details .fixture-map {
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .no-fixtures {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section {
+                padding: 20px;
+            }
+
+            .hero-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero-section .fixture-teams {
+                font-size: 1.2rem;
+            }
+
+            .hero-map {
+                height: 300px;
+            }
+
+            .fixture-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .fixture-details .fixture-map {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weston &amp; Banwell Skittle League 2025/2026 Fixtures</h1>
+        
+        <div class="team-selector">
+            <label for="teamSelect">Select Team:</label>
+            <select id="teamSelect">
+                <option value="">Loading teams...</option>
+            </select>
+            <a id="downloadICS" class="download-button" style="display: none; margin-top: 15px;" download>📅 Download Calendar (ICS)</a>
+        </div>
+
+        <div class="hero-section" id="heroSection" style="display: none;">
+            <h2>Next Fixture</h2>
+            <div class="fixture-date" id="heroDate"></div>
+            <div class="fixture-teams" id="heroTeams"></div>
+            <div class="fixture-address" id="heroAddress"></div>
+            <a id="heroDirections" class="directions-button" target="_blank" rel="noopener noreferrer" style="display: none;">📍 Get Directions</a>
+            <div class="hero-map" id="heroMap"></div>
+        </div>
+
+        <div class="fixtures-list">
+            <h2>Future Fixtures</h2>
+            <div id="fixturesList"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="fixtures.js"></script>
+    <script>
+        const teamsData = fixturesData.teams;
+        let heroMap = null;
+        initializeApp();
+        function initializeApp() {
+            const teamSelect = document.getElementById('teamSelect');
+            
+            // Populate team dropdown
+            teamSelect.innerHTML = '';
+            teamsData.sort((a, b) => a.captain_full.localeCompare(b.captain_full)).forEach(team => {
+                const option = document.createElement('option');
+                option.value = team.captain;
+                option.textContent = team.captain_full;
+                teamSelect.appendChild(option);
+            });
+
+            // Set default to "A Pinn"
+            teamSelect.value = 'A Pinn';
+            updateDisplay();
+
+            // Add event listener
+            teamSelect.addEventListener('change', function() {
+                updateDisplay();
+                updateDownloadLink();
+            });
+            
+            // Initial download link update
+            updateDownloadLink();
+        }
+
+        function getTeamLocation(captainName) {
+            const team = teamsData.find(t => t.captain === captainName);
+            if (team && team.latitude && team.longitude) {
+                return {
+                    lat: team.latitude,
+                    lng: team.longitude,
+                    address: team.address
+                };
+            }
+            return null;
+        }
+
+        function getAllFixturesForTeam(teamName) {
+            const allFixtures = [...fixturesData.league_fixtures, ...fixturesData.cup_fixtures];
+            const now = new Date();
+            
+            return allFixtures
+                .filter(fixture => 
+                    fixture.home_team === teamName || fixture.away_team === teamName
+                )
+                .map(fixture => ({
+                    ...fixture,
+                    date: new Date(fixture.dateUtc)
+                }))
+                .filter(fixture => fixture.date >= now)
+                .sort((a, b) => a.date - b.date);
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString(undefined, {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function createMap(containerId, lat, lng, address) {
+            const map = L.map(containerId).setView([lat, lng], 13);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19
+            }).addTo(map);
+
+            L.marker([lat, lng])
+                .addTo(map)
+                .bindPopup(`<strong>${address}</strong>`)
+                .openPopup();
+
+            return map;
+        }
+
+        function getGoogleMapsUrl(address) {
+            const encodedAddress = encodeURIComponent(address);
+            return `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`;
+        }
+
+        function updateDownloadLink() {
+            const selectedTeam = document.getElementById('teamSelect').value;
+            const downloadLink = document.getElementById('downloadICS');
+            
+            if (selectedTeam) {
+                const team = teamsData.find(t => t.captain === selectedTeam);
+                if (team) {
+                    const filename = `${team.captain.replace(/\s+/g, '_')}.ics`;
+                    downloadLink.href = `exports/${filename}`;
+                    downloadLink.download = filename;
+                    downloadLink.style.display = 'inline-block';
+                } else {
+                    downloadLink.style.display = 'none';
+                }
+            } else {
+                downloadLink.style.display = 'none';
+            }
+        }
+
+        function updateDisplay() {
+            const selectedTeam = document.getElementById('teamSelect').value;
+            if (!selectedTeam) return;
+
+            const fixtures = getAllFixturesForTeam(selectedTeam);
+            const heroSection = document.getElementById('heroSection');
+            const fixturesList = document.getElementById('fixturesList');
+
+            if (fixtures.length === 0) {
+                heroSection.style.display = 'none';
+                fixturesList.innerHTML = '<div class="no-fixtures">No upcoming fixtures for this team.</div>';
+                return;
+            }
+
+            // Display next fixture in hero section
+            const nextFixture = fixtures[0];
+            const isHome = nextFixture.home_team === selectedTeam;
+            const opponent = isHome ? nextFixture.away_team : nextFixture.home_team;
+            const venueTeam = nextFixture.home_team;
+            const location = getTeamLocation(venueTeam);
+
+            if (location) {
+                heroSection.style.display = 'block';
+                document.getElementById('heroDate').textContent = formatDate(nextFixture.date);
+                document.getElementById('heroTeams').textContent = `${nextFixture.home_team} vs ${nextFixture.away_team}`;
+                document.getElementById('heroAddress').textContent = location.address;
+                
+                // Update directions button
+                const heroDirections = document.getElementById('heroDirections');
+                heroDirections.href = getGoogleMapsUrl(location.address);
+                heroDirections.style.display = 'inline-block';
+
+                // Update hero map
+                if (heroMap) {
+                    heroMap.remove();
+                }
+                heroMap = createMap('heroMap', location.lat, location.lng, location.address);
+            } else {
+                heroSection.style.display = 'none';
+            }
+
+            // Display future fixtures list
+            if (fixtures.length > 1) {
+                fixturesList.innerHTML = '';
+                fixtures.slice(1).forEach((fixture, index) => {
+                    const fixtureItem = document.createElement('div');
+                    fixtureItem.className = 'fixture-item';
+                    fixtureItem.dataset.index = index + 1;
+
+                    const isHome = fixture.home_team === selectedTeam;
+                    const venueTeam = fixture.home_team;
+                    const location = getTeamLocation(venueTeam);
+
+                    fixtureItem.innerHTML = `
+                        <div class="fixture-header">
+                            <div class="fixture-teams">${fixture.home_team} vs ${fixture.away_team}</div>
+                            <div class="fixture-date">${formatDate(fixture.date)}</div>
+                        </div>
+                        <div class="fixture-details" id="details-${index + 1}">
+                            <div class="fixture-address">${location ? location.address : 'Address not available'}</div>
+                            ${location ? `<a href="${getGoogleMapsUrl(location.address)}" class="directions-button" target="_blank" rel="noopener noreferrer">📍 Get Directions</a>` : ''}
+                            ${location ? `<div class="fixture-map" id="map-${index + 1}"></div>` : ''}
+                        </div>
+                    `;
+
+                    // Prevent directions button from triggering expand/collapse
+                    const directionsButton = fixtureItem.querySelector('.directions-button');
+                    if (directionsButton) {
+                        directionsButton.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                        });
+                    }
+
+                    fixtureItem.addEventListener('click', function(e) {
+                        // Don't expand/collapse if clicking on the directions button
+                        if (e.target.classList.contains('directions-button')) {
+                            return;
+                        }
+                        
+                        const details = this.querySelector('.fixture-details');
+                        const isExpanded = details.classList.contains('expanded');
+
+                        // Close all other expanded items
+                        document.querySelectorAll('.fixture-details.expanded').forEach(item => {
+                            if (item !== details) {
+                                item.classList.remove('expanded');
+                                const mapId = item.querySelector('.fixture-map')?.id;
+                                if (mapId) {
+                                    const mapElement = document.getElementById(mapId);
+                                    if (mapElement._map) {
+                                        mapElement._map.remove();
+                                        delete mapElement._map;
+                                    }
+                                }
+                            }
+                        });
+
+                        if (isExpanded) {
+                            details.classList.remove('expanded');
+                            const mapId = details.querySelector('.fixture-map')?.id;
+                            if (mapId) {
+                                const mapElement = document.getElementById(mapId);
+                                if (mapElement._map) {
+                                    mapElement._map.remove();
+                                    delete mapElement._map;
+                                }
+                            }
+                        } else {
+                            details.classList.add('expanded');
+                            if (location) {
+                                const mapId = `map-${index + 1}`;
+                                const mapElement = document.getElementById(mapId);
+                                if (mapElement && !mapElement._map) {
+                                    // Small delay to ensure container is visible
+                                    setTimeout(() => {
+                                        mapElement._map = createMap(mapId, location.lat, location.lng, location.address);
+                                    }, 100);
+                                }
+                            }
+                        }
+                    });
+
+                    fixturesList.appendChild(fixtureItem);
+                });
+            } else {
+                fixturesList.innerHTML = '<div class="no-fixtures">No additional future fixtures.</div>';
+            }
+        }
+    </script>
+</body>
+</html>
