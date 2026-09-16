@@ -1,263 +1,331 @@
 /* Weston & Banwell Skittle League - 2026/27 fixture data.
    Generated from skits2026.json; edit that file, not this one.
-   `fixtures` is transcribed from the printed book. `teams` is MOCK
-   placeholder data - the book lists captains only, so every pub name
-   and coordinate here is invented. */
+   Fixtures are transcribed from the printed book; teams are transcribed
+   from the captain/pub list photo. Coordinates are OpenStreetMap pub
+   nodes, falling back to the postcode centroid for the four venues OSM
+   does not map individually. */
 window.FIXTURE_DATA = {
-  "_note": "fixtures are transcribed from the 2026/27 fixture book photo (skits2026.jpeg). teams is MOCK PLACEHOLDER DATA: the book lists captain names only, so pub names and coordinates are invented and must be replaced with the real mapping before use.",
+  "_note": "fixtures and venues are transcribed from the 2026/27 fixture book photos (skits2026.jpeg for the fixtures, puiblist.jpeg for the captain/pub list). Venue coordinates are OpenStreetMap pub nodes where the pub is mapped, otherwise the Royal Mail postcode centroid (BASC Ground, Bason Bridge Inn, Lympsham Pavilion, Post & Wicket); the two sources agree to within ~300m for every pub carrying both. 17 venues serve 28 teams, so 11 pubs host two teams each.",
   "season": "2026/27",
   "teams": {
     "K Archer": {
       "captain": "K Archer",
-      "pub": "The Royal Oak",
+      "captainName": "Kevin Archer",
+      "pub": "The Brent Knoll Inn, East Brent",
+      "postcode": "TA9 4JG",
+      "pubPhone": "01278 760335",
+      "food": true,
       "location": {
-        "lat": 51.1284,
-        "lon": -2.9943
-      },
-      "mock": true
+        "lat": 51.262754,
+        "lon": -2.933049
+      }
     },
     "M Anderson": {
       "captain": "M Anderson",
-      "pub": "The Crossways Inn",
+      "captainName": "Mike Anderson",
+      "pub": "The Lamb Inn, Axbridge",
+      "postcode": "BS26 2AP",
+      "pubPhone": "01934 732253",
       "location": {
-        "lat": 51.2087,
-        "lon": -2.9421
-      },
-      "mock": true
+        "lat": 51.287292,
+        "lon": -2.817619
+      }
     },
     "R Stone": {
       "captain": "R Stone",
-      "pub": "The George Hotel",
+      "captainName": "Robert Stone",
+      "pub": "The Red Tile, Cossington",
+      "postcode": "TA7 8LN",
+      "pubPhone": "01278 722333",
       "location": {
-        "lat": 51.1361,
-        "lon": -3.0042
-      },
-      "mock": true
+        "lat": 51.157369,
+        "lon": -2.912075
+      }
     },
     "M Woodliffe": {
       "captain": "M Woodliffe",
-      "pub": "The Puriton Inn",
+      "captainName": "Mike Woodliffe",
+      "pub": "The Duck, Burtle",
+      "postcode": "TA7 8NU",
+      "pubPhone": "01278 238282",
       "location": {
-        "lat": 51.1673,
-        "lon": -2.9586
-      },
-      "mock": true
+        "lat": 51.181481,
+        "lon": -2.870404
+      }
     },
     "C Pegler": {
       "captain": "C Pegler",
-      "pub": "The Ring O'Bells",
+      "captainName": "Clive Pegler",
+      "pub": "The Lympsham Pavilion, Lympsham",
+      "postcode": "BS24 0DN",
+      "pubPhone": "01934 750946",
       "location": {
-        "lat": 51.2214,
-        "lon": -2.8873
-      },
-      "mock": true
+        "lat": 51.284196,
+        "lon": -2.952763
+      }
     },
     "J Ripley": {
       "captain": "J Ripley",
-      "pub": "The Bason Bridge Inn",
+      "captainName": "John Ripley",
+      "pub": "The Wellington Arms, Rooksbridge",
+      "postcode": "BS26 2TE",
+      "pubPhone": "01934 751005",
+      "food": true,
       "location": {
-        "lat": 51.2351,
-        "lon": -2.9047
-      },
-      "mock": true
+        "lat": 51.266881,
+        "lon": -2.906394
+      }
     },
     "M Brooks": {
       "captain": "M Brooks",
-      "pub": "The Old Down Inn",
+      "captainName": "Mike Brooks",
+      "pub": "The White Hart, Cross",
+      "postcode": "BS26 2EE",
+      "pubPhone": "01934 733108",
+      "food": true,
       "location": {
-        "lat": 51.1042,
-        "lon": -2.8791
-      },
-      "mock": true
+        "lat": 51.288961,
+        "lon": -2.837511
+      }
     },
     "A Fear": {
       "captain": "A Fear",
-      "pub": "The Malt Shovel",
+      "captainName": "Andrew Fear",
+      "pub": "The Watchfield Inn, Watchfield",
+      "postcode": "TA9 4RD",
+      "pubPhone": "01278 782393",
       "location": {
-        "lat": 51.1519,
-        "lon": -3.0468
-      },
-      "mock": true
+        "lat": 51.219424,
+        "lon": -2.934727
+      }
     },
     "M Wall": {
       "captain": "M Wall",
-      "pub": "The White Hart",
+      "captainName": "Matthew Wall",
+      "pub": "The Bason Bridge Inn, Bason Bridge",
+      "postcode": "TA9 4RL",
+      "pubPhone": "01278 782616",
       "location": {
-        "lat": 51.1197,
-        "lon": -2.9682
-      },
-      "mock": true
+        "lat": 51.208652,
+        "lon": -2.937262
+      }
     },
     "P McErlean": {
       "captain": "P McErlean",
-      "pub": "The Sexeys Arms",
+      "captainName": "Paul McErlean",
+      "pub": "The Lamb Inn, Weare",
+      "postcode": "BS26 2JF",
+      "pubPhone": "01934 732384",
+      "food": true,
       "location": {
-        "lat": 51.2003,
-        "lon": -2.8964
-      },
-      "mock": true
+        "lat": 51.280417,
+        "lon": -2.850682
+      }
     },
     "I Durston": {
       "captain": "I Durston",
-      "pub": "The Black Horse",
+      "captainName": "Ian Durston",
+      "pub": "BASC Ground, Burnham on Sea",
+      "postcode": "TA8 2BS",
+      "pubPhone": "01278 788355",
       "location": {
-        "lat": 51.1438,
-        "lon": -2.9218
-      },
-      "mock": true
+        "lat": 51.248197,
+        "lon": -2.984702
+      }
     },
     "M Rippon": {
       "captain": "M Rippon",
-      "pub": "The Lamb Inn",
+      "captainName": "Mike Rippon",
+      "pub": "The New Inn, Wedmore",
+      "postcode": "BS28 4DU",
+      "pubPhone": "01934 712099",
+      "food": true,
       "location": {
-        "lat": 51.2642,
-        "lon": -2.9331
-      },
-      "mock": true
+        "lat": 51.226249,
+        "lon": -2.806148
+      }
     },
     "A Pinn": {
       "captain": "A Pinn",
-      "pub": "The Cross Keys",
+      "captainName": "Andrew Pinn",
+      "pub": "The Woodborough Hotel, Winscombe",
+      "postcode": "BS25 1HD",
+      "pubPhone": "01934 844167",
       "location": {
-        "lat": 51.1756,
-        "lon": -3.0124
-      },
-      "mock": true
+        "lat": 51.314804,
+        "lon": -2.832426
+      }
     },
     "M Turner": {
       "captain": "M Turner",
-      "pub": "The Railway Inn",
+      "captainName": "Martyn Turner",
+      "pub": "The Coopers Arms, Highbridge",
+      "postcode": "TA9 3BT",
+      "pubPhone": "01278 784517",
+      "food": true,
       "location": {
-        "lat": 51.2478,
-        "lon": -2.8652
-      },
-      "mock": true
+        "lat": 51.219068,
+        "lon": -2.973883
+      }
     },
     "P Baker": {
       "captain": "P Baker",
-      "pub": "The Bristol Arms",
+      "captainName": "Paul Baker",
+      "pub": "The Post & Wicket, Wedmore",
+      "postcode": "BS28 4BS",
+      "pubPhone": "01934 713087",
       "location": {
-        "lat": 51.1109,
-        "lon": -3.0237
-      },
-      "mock": true
+        "lat": 51.224148,
+        "lon": -2.820793
+      }
     },
     "G Croker": {
       "captain": "G Croker",
-      "pub": "The Fountain Inn",
+      "captainName": "Greg Croker",
+      "pub": "The Bason Bridge Inn, Bason Bridge",
+      "postcode": "TA9 4RL",
+      "pubPhone": "01278 782616",
       "location": {
-        "lat": 51.1885,
-        "lon": -2.9779
-      },
-      "mock": true
+        "lat": 51.208652,
+        "lon": -2.937262
+      }
     },
     "B Stephens": {
       "captain": "B Stephens",
-      "pub": "The Globe Inn",
+      "captainName": "Bevis Stephens",
+      "pub": "The Lamb Inn, Weare",
+      "postcode": "BS26 2JF",
+      "pubPhone": "01934 732384",
+      "food": true,
       "location": {
-        "lat": 51.2126,
-        "lon": -3.0391
-      },
-      "mock": true
+        "lat": 51.280417,
+        "lon": -2.850682
+      }
     },
     "P Culkin": {
       "captain": "P Culkin",
-      "pub": "The Rose and Crown",
+      "captainName": "Pat Culkin",
+      "pub": "BASC Ground, Burnham on Sea",
+      "postcode": "TA8 2BS",
+      "pubPhone": "01278 788355",
       "location": {
-        "lat": 51.1327,
-        "lon": -2.8847
-      },
-      "mock": true
+        "lat": 51.248197,
+        "lon": -2.984702
+      }
     },
     "S Midgley": {
       "captain": "S Midgley",
-      "pub": "The Kings Head",
+      "captainName": "Simon Midgley",
+      "pub": "The New Inn, Wedmore",
+      "postcode": "BS28 4DU",
+      "pubPhone": "01934 712099",
+      "food": true,
       "location": {
-        "lat": 51.2566,
-        "lon": -2.9508
-      },
-      "mock": true
+        "lat": 51.226249,
+        "lon": -2.806148
+      }
     },
     "J Fiddler": {
       "captain": "J Fiddler",
-      "pub": "The Star Inn",
+      "captainName": "Josh Fiddler",
+      "pub": "Winscombe Club, Winscombe",
+      "postcode": "BS25 1HD",
+      "pubPhone": "01934 842624",
+      "food": true,
       "location": {
-        "lat": 51.1604,
-        "lon": -2.8712
-      },
-      "mock": true
+        "lat": 51.315297,
+        "lon": -2.833559
+      }
     },
     "B Cox": {
       "captain": "B Cox",
-      "pub": "The Coopers Arms",
+      "captainName": "Ben Cox",
+      "pub": "The Lamb Inn, Worle",
+      "postcode": "BS22 6JA",
+      "pubPhone": "01934 515760",
       "location": {
-        "lat": 51.1235,
-        "lon": -3.0553
-      },
-      "mock": true
+        "lat": 51.36035,
+        "lon": -2.927756
+      }
     },
     "C Abbiss": {
       "captain": "C Abbiss",
-      "pub": "The New Inn",
+      "captainName": "Colin Abbiss",
+      "pub": "The Brent Knoll Inn, East Brent",
+      "postcode": "TA9 4JG",
+      "pubPhone": "01278 760335",
+      "food": true,
       "location": {
-        "lat": 51.2298,
-        "lon": -2.9662
-      },
-      "mock": true
+        "lat": 51.262754,
+        "lon": -2.933049
+      }
     },
     "J Torrens-Spence": {
       "captain": "J Torrens-Spence",
-      "pub": "The Swan Inn",
+      "captainName": "Johnny Torrens-Spence",
+      "pub": "The Lamb Inn, Axbridge",
+      "postcode": "BS26 2AP",
+      "pubPhone": "01934 732253",
       "location": {
-        "lat": 51.1472,
-        "lon": -2.9891
-      },
-      "mock": true
+        "lat": 51.287292,
+        "lon": -2.817619
+      }
     },
     "S Clatworthy": {
       "captain": "S Clatworthy",
-      "pub": "The Bell Inn",
+      "captainName": "Stuart Clatworthy",
+      "pub": "The Red Tile, Cossington",
+      "postcode": "TA7 8LN",
+      "pubPhone": "01278 722333",
       "location": {
-        "lat": 51.2731,
-        "lon": -2.9014
-      },
-      "mock": true
+        "lat": 51.157369,
+        "lon": -2.912075
+      }
     },
     "P Clatworthy": {
       "captain": "P Clatworthy",
-      "pub": "The Red Cow",
+      "captainName": "Percy Clatworthy",
+      "pub": "The Duck, Burtle",
+      "postcode": "TA7 8NU",
+      "pubPhone": "01278 238282",
       "location": {
-        "lat": 51.1063,
-        "lon": -2.9376
-      },
-      "mock": true
+        "lat": 51.181481,
+        "lon": -2.870404
+      }
     },
     "M Boley": {
       "captain": "M Boley",
-      "pub": "The Wessex Arms",
+      "captainName": "Mat Boley",
+      "pub": "The Lympsham Pavilion, Lympsham",
+      "postcode": "BS24 0DN",
+      "pubPhone": "01934 750946",
       "location": {
-        "lat": 51.1948,
-        "lon": -3.0605
-      },
-      "mock": true
+        "lat": 51.284196,
+        "lon": -2.952763
+      }
     },
     "J Goodall": {
       "captain": "J Goodall",
-      "pub": "The Anchor Inn",
+      "captainName": "Jerry Goodall",
+      "pub": "The Wellington Arms, Rooksbridge",
+      "postcode": "BS26 2TE",
+      "pubPhone": "01934 751005",
       "location": {
-        "lat": 51.2169,
-        "lon": -2.9153
-      },
-      "mock": true
+        "lat": 51.266881,
+        "lon": -2.906394
+      }
     },
     "S Hutchings": {
       "captain": "S Hutchings",
-      "pub": "The Plough",
+      "captainName": "Simon Hutchings",
+      "pub": "The White Hart, Cross",
+      "postcode": "BS26 2EE",
+      "pubPhone": "01934 733108",
+      "food": true,
       "location": {
-        "lat": 51.1391,
-        "lon": -3.0289
-      },
-      "mock": true
+        "lat": 51.288961,
+        "lon": -2.837511
+      }
     }
   },
   "fixtures": [
@@ -1544,7 +1612,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 1,
       "time": "19:30",
       "home": "M Brooks",
@@ -1553,7 +1621,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 1,
       "time": "19:45",
       "home": "B Stephens",
@@ -1562,7 +1630,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 1,
       "time": "20:00",
       "home": "A Pinn",
@@ -1571,7 +1639,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 1,
       "time": "20:15",
       "home": "G Croker",
@@ -1580,7 +1648,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 1,
       "time": "20:30",
       "home": "P Baker",
@@ -1589,7 +1657,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 1,
       "time": "20:45",
       "home": "M Turner",
@@ -1598,7 +1666,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 1,
       "time": "21:00",
       "home": "B Cox",
@@ -1607,7 +1675,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 2,
       "time": "19:30",
       "home": "K Archer",
@@ -1616,7 +1684,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 2,
       "time": "19:45",
       "home": "S Clatworthy",
@@ -1625,7 +1693,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 2,
       "time": "20:00",
       "home": "A Fear",
@@ -1634,7 +1702,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 2,
       "time": "20:15",
       "home": "M Woodliffe",
@@ -1643,7 +1711,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 2,
       "time": "20:30",
       "home": "M Wall",
@@ -1652,7 +1720,7 @@ window.FIXTURE_DATA = {
     {
       "date": "2027-02-17",
       "competition": "captains_cup",
-      "venue": "Bason Bridge Inn",
+      "venue": "The Bason Bridge Inn, Bason Bridge",
       "alley": 2,
       "time": "20:45",
       "home": "J Torrens-Spence",
@@ -1769,7 +1837,7 @@ window.FIXTURE_DATA = {
       "date": "2027-04-14",
       "competition": "admin",
       "note": "League A.G.M, Bason Bridge Inn",
-      "venue": "Bason Bridge Inn"
+      "venue": "The Bason Bridge Inn, Bason Bridge"
     }
   ]
 };

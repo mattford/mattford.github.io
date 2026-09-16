@@ -319,11 +319,6 @@ footer p{margin:.3rem 0}
         </div>
       </section>
 
-      <p class="note">
-        <span aria-hidden="true">&#9888;</span>
-        <span><b>Pub names and locations are placeholder data.</b> The fixture book lists captains only,
-        so every venue and map pin here is invented. Fixtures, dates and the draw are real.</span>
-      </p>
     </div>
   </main>
 
@@ -362,8 +357,10 @@ footer p{margin:.3rem 0}
   };
 
   // Pub name -> coords, so a fixture with a named venue (the Captains Cup at
-  // the Bason Bridge Inn) still lands on the map. The book drops the leading
-  // "The" that the pub list carries, so match on a normalised key.
+  // the Bason Bridge Inn) still lands on the map. Venue strings are written to
+  // match the pub names exactly; normalising the key is belt-and-braces against
+  // a stray leading "The". Teams sharing a pub overwrite each other here, which
+  // is harmless - they carry the same pub name and the same coordinates.
   function pubKey(s) { return String(s).toLowerCase().replace(/^the\s+/, "").trim(); }
   var PUB_AT = {};
   Object.keys(TEAMS).forEach(function (k) {
@@ -466,7 +463,7 @@ footer p{margin:.3rem 0}
 
     var loc = v.pub ? v.pub : "Venue to be confirmed";
     var desc = bits.join(" · ") + ". Start " + prettyTime(s) + "." +
-               (v.pub ? " Venue: " + v.pub + " (placeholder data)." : "");
+               (v.pub ? " Venue: " + v.pub + "." : "");
 
     return [
       "BEGIN:VEVENT",
@@ -563,41 +560,42 @@ footer p{margin:.3rem 0}
     var signal = css("--signal") || "#8F6111";
     var muted  = css("--muted")  || "#5D6A62";
 
-    // every other pub in the league, faint
+    // Every other pub in the league, faint. One marker per pub, not per team:
+    // 11 of the 17 venues host two teams, so per-team markers would stack on
+    // identical coordinates and the lower popup would be unreachable.
+    var others = {};
     Object.keys(TEAMS).forEach(function (k) {
       var t = TEAMS[k];
+      if (!t.location) return;
       if (v.at && t.pub === v.pub) return;
       if (!isHome && mine && t.pub === TEAMS[team].pub) return;
-      L.marker([t.location.lat, t.location.lon], { icon: dot(muted, 7), opacity: .45 })
-        .bindPopup("<b>" + t.pub + "</b><br>" + k)
+      var pk = pubKey(t.pub);
+      if (!others[pk]) others[pk] = { pub: t.pub, at: t.location, teams: [] };
+      others[pk].teams.push(k);
+    });
+    Object.keys(others).forEach(function (pk) {
+      var o = others[pk];
+      L.marker([o.at.lat, o.at.lon], { icon: dot(muted, 7), opacity: .45 })
+        .bindPopup("<b>" + o.pub + "</b><br>" + o.teams.join("<br>"))
         .addTo(layer);
     });
 
-    var pts = [];
     if (v.at) {
       L.marker([v.at.lat, v.at.lon], { icon: dot(accent, 18, true), zIndexOffset: 1000 })
         .bindPopup("<b>" + v.pub + "</b><br>" + (isHome ? "Your alley" : f.home + " &mdash; home") +
                    "<br>Start " + prettyTime(startTime(f)))
         .addTo(layer);
-      pts.push([v.at.lat, v.at.lon]);
     }
     if (!isHome && mine) {
       L.marker([mine.lat, mine.lon], { icon: dot(signal, 13, true) })
         .bindPopup("<b>" + TEAMS[team].pub + "</b><br>" + team + " &mdash; your alley")
         .addTo(layer);
-      pts.push([mine.lat, mine.lon]);
-      if (v.at) {
-        L.polyline([[mine.lat, mine.lon], [v.at.lat, v.at.lon]], {
-          color: signal, weight: 1.5, opacity: .55, dashArray: "4 5"
-        }).addTo(layer);
-      }
     }
 
-    if (pts.length > 1) {
-      map.fitBounds(L.latLngBounds(pts).pad(0.45));
-      sub.textContent = "";
-    } else if (pts.length === 1) {
-      map.setView(pts[0], 13);
+    // Always centre on where this fixture is played. Your own alley keeps its
+    // marker but may sit outside the view - the league spans about 23km.
+    if (v.at) {
+      map.setView([v.at.lat, v.at.lon], 13);
       sub.textContent = isHome ? "At home" : "";
     } else {
       map.setView([51.19, -2.96], 11);
@@ -620,11 +618,14 @@ footer p{margin:.3rem 0}
     var cupish = f.competition !== "league";
 
     var facts = [
-      ["Venue", '<span class="venue-name">' + (v.pub || "To be confirmed") + "</span>" +
-        '<div class="sub">' + (f.venue ? "Neutral alley"
-          : isHome ? "Your own alley" : f.home + "&rsquo;s alley") + "</div>"],
+      ["Venue", '<span class="venue-name">' + (v.pub || "To be confirmed") + "</span>"],
       ["Start", '<span class="mono">' + prettyTime(startTime(f)) + "</span>" +
-        (f.alley ? '<span class="sub"> &middot; alley ' + f.alley + "</span>" : "")]
+        (f.alley ? '<span class="sub"> &middot; alley ' + f.alley + "</span>" : "")],
+      // "H" in the book marks the teams that serve food halfway through the
+      // match; the rest serve at the end. The flag is per-team, not per-pub -
+      // J Ripley and J Goodall share the Wellington Arms and differ - so read
+      // it from the home team, who arranges the food.
+      ["Food", TEAMS[f.home] && TEAMS[f.home].food ? "Served halfway" : "Served at the end"]
     ];
 
     card.innerHTML =
