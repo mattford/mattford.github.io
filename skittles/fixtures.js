@@ -582,7 +582,7 @@ window.FIXTURE_DATA = {
       "away": "P Clatworthy"
     },
     {
-      "date": "2026-09-30",
+      "date": "2026-10-07",
       "competition": "league",
       "home": "A Pinn",
       "away": "M Boley"
