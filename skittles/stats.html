@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skittles Team Stats Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --bs-primary: #0d6efd;
+      --bs-body-bg: #f8f9fa;
+    }
+    body {
+      background-color: var(--bs-body-bg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .card {
+      border: none;
+      border-radius: 0.75rem;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      transition: transform 0.2s ease-in-out;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #2b3035 0%, #1a1d20 100%);
+      color: #fff;
+    }
+    .badge-rank-1 { background-color: #ffd700; color: #000; }
+    .badge-rank-2 { background-color: #c0c0c0; color: #000; }
+    .badge-rank-3 { background-color: #cd7f32; color: #fff; }
+    .table-hover tbody tr:hover {
+      background-color: rgba(13, 110, 253, 0.05);
+    }
+    .chart-container {
+      position: relative;
+      height: 300px;
+    }
+  </style>
+</head>
+<body class="py-4">
+
+  <div class="container">
+    <!-- Header -->
+    <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+      <div>
+        <h1 class="h2 fw-bold text-dark mb-0"><i class="bi bi-trophy-fill text-warning me-2"></i>Skittles Team Dashboard</h1>
+        <p class="text-muted mb-0">Season Performance &amp; Player Statistics (Hand-by-Hand Breakdown)</p>
+      </div>
+      <span class="badge bg-dark fs-6 px-3 py-2">4 Matches Played</span>
+    </header>
+
+    <!-- Top KPI Row -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="card p-3 stat-card">
+          <div class="text-muted small text-uppercase fw-semibold text-light opacity-75">Matches Record</div>
+          <div class="h3 fw-bold mb-0 text-white">0W - 4L</div>
+          <div class="small text-danger mt-1"><i class="bi bi-arrow-down-circle-fill me-1"></i>0% Win Rate</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <div class="text-muted small text-uppercase fw-semibold">Top Scorer (Total)</div>
+          <div class="h3 fw-bold mb-0 text-primary">Ian (160)</div>
+          <div class="small text-muted mt-1">6.67 per hand</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <div class="text-muted small text-uppercase fw-semibold">Highest Average / Hand</div>
+          <div class="h3 fw-bold mb-0 text-success">Robert (7.00)</div>
+          <div class="small text-muted mt-1">42.0 match avg</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <div class="text-muted small text-uppercase fw-semibold">High Single Hand</div>
+          <div class="h3 fw-bold mb-0 text-warning">Matt (17)</div>
+          <div class="small text-muted mt-1">Match 4 Spare Frame</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-7">
+        <div class="card p-3 h-100">
+          <h5 class="fw-bold mb-3"><i class="bi bi-bar-chart-line-fill text-primary me-2"></i>Player Averages (Pins / Hand)</h5>
+          <div class="chart-container">
+            <canvas id="playerChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="card p-3 h-100">
+          <h5 class="fw-bold mb-3"><i class="bi bi-graph-up-arrow text-success me-2"></i>Match Scores Comparison</h5>
+          <div class="chart-container">
+            <canvas id="matchChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Player Table -->
+    <div class="card mb-4">
+      <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold mb-0"><i class="bi bi-people-fill text-dark me-2"></i>Individual Player Leaderboard</h5>
+        <div class="input-group style-search" style="max-width: 250px;">
+          <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Search player...">
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0" id="statsTable">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" style="width: 50px;">#</th>
+              <th scope="col" class="sortable" onclick="sortTable(1)">Player Name <i class="bi bi-arrow-down-up small text-muted"></i></th>
+              <th scope="col" class="sortable text-center" onclick="sortTable(2, true)">Total Score <i class="bi bi-arrow-down-up small text-muted"></i></th>
+              <th scope="col" class="sortable text-center" onclick="sortTable(3, true)">Hands Played <i class="bi bi-arrow-down-up small text-muted"></i></th>
+              <th scope="col" class="sortable text-center" onclick="sortTable(4, true)">Avg / Hand <i class="bi bi-arrow-down-up small text-muted"></i></th>
+              <th scope="col" class="text-center">High Hand</th>
+              <th scope="col" class="text-center">Low Hand</th>
+              <th scope="col" class="text-end pe-3">Match Scores</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Table rows populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer bg-light text-muted small py-2">
+        <i class="bi bi-info-circle me-1"></i> Sorted by Total Score (Descending). Click on column headers to re-sort. Sergeant Major (SM) entries excluded from individual stats.
+      </div>
+    </div>
+
+    <!-- Match Breakdown Section -->
+    <h5 class="fw-bold mb-3"><i class="bi bi-journal-text text-primary me-2"></i>Chronological Match History</h5>
+    <div class="row g-3" id="matchCards">
+      <!-- Match Cards populated dynamically -->
+    </div>
+
+  </div>
+
+  <script>
+    // Player Stats Data (Roy & Bob split into separate entries)
+    const players = [
+      { name: "Ian", total: 160, hands: 24, avgHand: 6.67, highHand: 9, lowHand: 4, matches: [39, 38, 33, 50] },
+      { name: "Andy", total: 158, hands: 24, avgHand: 6.58, highHand: 9, lowHand: 4, matches: [38, 38, 43, 39] },
+      { name: "Matt", total: 156, hands: 24, avgHand: 6.50, highHand: 17, lowHand: 3, matches: [36, 34, 34, 52] },
+      { name: "Dave", total: 151, hands: 24, avgHand: 6.29, highHand: 9, lowHand: 3, matches: [43, 38, 32, 38] },
+      { name: "Laurence", total: 148, hands: 24, avgHand: 6.17, highHand: 9, lowHand: 0, matches: [41, 42, 26, 39] },
+      { name: "Steve", total: 123, hands: 18, avgHand: 6.83, highHand: 9, lowHand: 1, matches: [41, null, 38, 44] },
+      { name: "Scott", total: 66, hands: 12, avgHand: 5.50, highHand: 8, lowHand: 3, matches: [31, null, 35, null] },
+      { name: "Robert", total: 42, hands: 6, avgHand: 7.00, highHand: 8, lowHand: 5, matches: [null, null, 42, null] },
+      { name: "Roy", total: 38, hands: 6, avgHand: 6.33, highHand: 8, lowHand: 5, matches: [null, null, 38, null] },
+      { name: "Bob", total: 33, hands: 6, avgHand: 5.50, highHand: 7, lowHand: 3, matches: [33, null, null, null] },
+      { name: "Neil", total: 32, hands: 6, avgHand: 5.33, highHand: 8, lowHand: 2, matches: [null, null, 32, null] }
+    ];
+
+    // Chronological Match Data
+    const matches = [
+      { id: 1, date: "16 Sept 2026", venue: "Away", score: 342, oppScore: 376, result: "L", diff: -34, topScorer: "Dave (43)" },
+      { id: 2, date: "23 Sept 2026", venue: "Away", score: 227, oppScore: 261, result: "L", diff: -34, topScorer: "Laurence (42)" },
+      { id: 3, date: "07 Oct 2026", venue: "Home (Woodborough Inn)", score: 353, oppScore: 358, result: "L", diff: -5, topScorer: "Andy (43)" },
+      { id: 4, date: "21 Oct 2026", venue: "Away", score: 337, oppScore: 354, result: "L", diff: -17, topScorer: "Matt (52)" }
+    ];
+
+    // Populate Table
+    function renderTable(data) {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+      
+      data.forEach((p, idx) => {
+        let rankBadge = '';
+        if (idx === 0) rankBadge = '<span class="badge badge-rank-1">1</span>';
+        else if (idx === 1) rankBadge = '<span class="badge badge-rank-2">2</span>';
+        else if (idx === 2) rankBadge = '<span class="badge badge-rank-3">3</span>';
+        else rankBadge = `<span class="text-muted small">${idx + 1}</span>`;
+
+        const matchBadges = p.matches.map(m => 
+          m !== null ? `<span class="badge bg-light text-dark border me-1">${m}</span>` : `<span class="badge bg-light text-muted border me-1">-</span>`
+        ).join('');
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="text-center">${rankBadge}</td>
+          <td class="fw-semibold">${p.name}</td>
+          <td class="text-center fw-bold text-primary">${p.total}</td>
+          <td class="text-center">${p.hands}</td>
+          <td class="text-center fw-semibold">${p.avgHand.toFixed(2)}</td>
+          <td class="text-center text-success fw-semibold">${p.highHand}</td>
+          <td class="text-center text-danger">${p.lowHand}</td>
+          <td class="text-end pe-3">${matchBadges}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Populate Match Cards
+    function renderMatches() {
+      const container = document.getElementById('matchCards');
+      container.innerHTML = '';
+
+      matches.forEach(m => {
+        const col = document.createElement('div');
+        col.className = 'col-md-6 col-lg-3';
+        const isWin = m.result === 'W';
+        const bgBadge = isWin ? 'bg-success' : 'bg-danger';
+
+        col.innerHTML = `
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge ${bgBadge}">${m.result === 'W' ? 'WIN' : 'LOSS'} (${m.diff > 0 ? '+' + m.diff : m.diff})</span>
+                <small class="text-muted"><i class="bi bi-calendar-event me-1"></i>${m.date}</small>
+              </div>
+              <h6 class="fw-bold mb-1">Match ${m.id}</h6>
+              <div class="text-muted small mb-3"><i class="bi bi-geo-alt me-1"></i>${m.venue}</div>
+              <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
+                <span class="fw-semibold">Team Score:</span>
+                <span class="fw-bold text-dark fs-5">${m.score}</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-3">
+                <span class="text-muted">Opponent:</span>
+                <span class="fw-semibold text-muted">${m.oppScore}</span>
+              </div>
+              <div class="small"><i class="bi bi-star-fill text-warning me-1"></i>Top Scorer: <strong>${m.topScorer}</strong></div>
+            </div>
+          </div>
+        `;
+        container.appendChild(col);
+      });
+    }
+
+    // Initialize Charts
+    function initCharts() {
+      // Player Averages Chart
+      const ctxPlayer = document.getElementById('playerChart').getContext('2d');
+      new Chart(ctxPlayer, {
+        type: 'bar',
+        data: {
+          labels: players.map(p => p.name),
+          datasets: [{
+            label: 'Avg Score / Hand',
+            data: players.map(p => p.avgHand),
+            backgroundColor: 'rgba(13, 110, 253, 0.75)',
+            borderColor: 'rgba(13, 110, 253, 1)',
+            borderWidth: 1,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, max: 10 }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+
+      // Match Comparison Chart
+      const ctxMatch = document.getElementById('matchChart').getContext('2d');
+      new Chart(ctxMatch, {
+        type: 'line',
+        data: {
+          labels: matches.map(m => `Match ${m.id}`),
+          datasets: [
+            {
+              label: 'Our Team',
+              data: matches.map(m => m.score),
+              borderColor: '#0d6efd',
+              backgroundColor: 'rgba(13, 110, 253, 0.1)',
+              fill: true,
+              tension: 0.2
+            },
+            {
+              label: 'Opponent',
+              data: matches.map(m => m.oppScore),
+              borderColor: '#dc3545',
+              borderDash: [5, 5],
+              fill: false,
+              tension: 0.2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    }
+
+    // Filter Function
+    document.getElementById('searchInput').addEventListener('keyup', function(e) {
+      const query = e.target.value.toLowerCase();
+      const filtered = players.filter(p => p.name.toLowerCase().includes(query));
+      renderTable(filtered);
+    });
+
+    // Sorting Helper
+    let sortAsc = false;
+    function sortTable(colIdx, isNumeric = false) {
+      sortAsc = !sortAsc;
+      players.sort((a, b) => {
+        let valA, valB;
+        if (colIdx === 1) { valA = a.name; valB = b.name; }
+        else if (colIdx === 2) { valA = a.total; valB = b.total; }
+        else if (colIdx === 3) { valA = a.hands; valB = b.hands; }
+        else if (colIdx === 4) { valA = a.avgHand; valB = b.avgHand; }
+
+        if (isNumeric) {
+          return sortAsc ? valA - valB : valB - valA;
+        } else {
+          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+      });
+      renderTable(players);
+    }
+
+    // Page Load Setup
+    window.addEventListener('DOMContentLoaded', () => {
+      // Default sorted by total score descending
+      players.sort((a, b) => b.total - a.total);
+      renderTable(players);
+      renderMatches();
+      initCharts();
+    });
+  </script>
+</body>
+</html>
