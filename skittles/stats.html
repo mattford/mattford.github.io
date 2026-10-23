@@ -15,7 +15,8 @@
       --accent-color: #10b981;
       --accent-hover: #059669;
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --text-muted: #cbd5e1;
+      --text-subtle: #94a3b8;
     }
 
     body {
@@ -45,7 +46,7 @@
     }
 
     .kpi-title {
-      color: var(--text-muted);
+      color: var(--text-subtle);
       font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -67,8 +68,8 @@
 
     .table-dark-custom th {
       border-bottom: 2px solid var(--border-color);
-      color: var(--text-muted);
-      font-weight: 600;
+      color: var(--text-subtle);
+      font-weight: 700;
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -77,12 +78,13 @@
 
     .table-dark-custom td {
       border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
       padding: 0.875rem 0.75rem;
       vertical-align: middle;
     }
 
     .table-hover tbody tr:hover {
-      background-color: rgba(255, 255, 255, 0.03);
+      background-color: rgba(255, 255, 255, 0.05);
     }
 
     /* Badges */
@@ -100,7 +102,7 @@
     .rank-1 { background-color: #f59e0b; color: #000; }
     .rank-2 { background-color: #94a3b8; color: #000; }
     .rank-3 { background-color: #d97706; color: #fff; }
-    .rank-other { background-color: #334155; color: #94a3b8; }
+    .rank-other { background-color: #334155; color: #cbd5e1; }
 
     .score-pill {
       background-color: #0f172a;
@@ -113,7 +115,7 @@
     }
 
     .score-pill-empty {
-      color: var(--text-muted);
+      color: var(--text-subtle);
       border-color: transparent;
       background-color: transparent;
     }
@@ -122,14 +124,19 @@
     .search-input {
       background-color: #0f172a;
       border: 1px solid var(--border-color);
-      color: var(--text-main);
+      color: var(--text-main) !important;
       border-radius: 0.5rem;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-subtle);
+      opacity: 0.8;
     }
 
     .search-input:focus {
       background-color: #0f172a;
       border-color: var(--accent-color);
-      color: var(--text-main);
+      color: var(--text-main) !important;
       box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
     }
 
@@ -141,6 +148,14 @@
     .sortable:hover {
       color: var(--accent-color);
     }
+
+    .text-light-muted {
+      color: var(--text-muted) !important;
+    }
+
+    .text-subtle {
+      color: var(--text-subtle) !important;
+    }
   </style>
 </head>
 <body class="py-4">
@@ -150,7 +165,7 @@
     <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
       <div>
         <h1 class="h2 header-title mb-0"><i class="bi bi-trophy-fill text-warning me-2"></i>Skittles Team Dashboard</h1>
-        <p class="text-muted mb-0 small">Season Performance &amp; Player Statistics (Hand-by-Hand Breakdown)</p>
+        <p class="text-light-muted mb-0 small">Season Performance &amp; Player Statistics (Hand-by-Hand Breakdown)</p>
       </div>
       <span class="badge bg-secondary bg-opacity-25 text-light px-3 py-2 border border-secondary border-opacity-50">4 Matches Played</span>
     </header>
@@ -161,28 +176,28 @@
         <div class="card p-3 kpi-card">
           <div class="kpi-title">Match Record</div>
           <div class="kpi-value text-danger">0W - 4L</div>
-          <div class="small text-muted mt-1">4 Played</div>
+          <div class="small text-light-muted mt-1">4 Played</div>
         </div>
       </div>
       <div class="col-6 col-md-3">
         <div class="card p-3 kpi-card">
           <div class="kpi-title">Top Scorer (Total)</div>
           <div class="kpi-value">Ian (160)</div>
-          <div class="small text-muted mt-1">6.67 per hand</div>
+          <div class="small text-light-muted mt-1">6.67 per hand</div>
         </div>
       </div>
       <div class="col-6 col-md-3">
         <div class="card p-3 kpi-card">
           <div class="kpi-title">Highest Average / Hand</div>
           <div class="kpi-value text-info">Robert (7.00)</div>
-          <div class="small text-muted mt-1">42.0 match avg</div>
+          <div class="small text-light-muted mt-1">42.0 match avg</div>
         </div>
       </div>
       <div class="col-6 col-md-3">
         <div class="card p-3 kpi-card">
           <div class="kpi-title">High Single Hand</div>
           <div class="kpi-value text-warning">Matt (17)</div>
-          <div class="small text-muted mt-1">Match 4 Spare Frame</div>
+          <div class="small text-light-muted mt-1">Match 4 Spare Frame</div>
         </div>
       </div>
     </div>
@@ -191,7 +206,7 @@
     <div class="row g-3 mb-4">
       <div class="col-md-7">
         <div class="card p-3 h-100">
-          <h6 class="fw-bold text-uppercase text-muted small mb-3"><i class="bi bi-bar-chart-line-fill text-success me-2"></i>Player Averages (Pins / Hand)</h6>
+          <h6 class="fw-bold text-uppercase text-subtle small mb-3"><i class="bi bi-bar-chart-line-fill text-success me-2"></i>Player Averages (Pins / Hand)</h6>
           <div style="position: relative; height: 260px;">
             <canvas id="playerChart"></canvas>
           </div>
@@ -199,7 +214,7 @@
       </div>
       <div class="col-md-5">
         <div class="card p-3 h-100">
-          <h6 class="fw-bold text-uppercase text-muted small mb-3"><i class="bi bi-graph-up-arrow text-info me-2"></i>Match Scores Comparison</h6>
+          <h6 class="fw-bold text-uppercase text-subtle small mb-3"><i class="bi bi-graph-up-arrow text-info me-2"></i>Match Scores Comparison</h6>
           <div style="position: relative; height: 260px;">
             <canvas id="matchChart"></canvas>
           </div>
@@ -210,7 +225,7 @@
     <!-- Main Player Table -->
     <div class="card mb-4">
       <div class="card-header bg-transparent border-bottom border-secondary border-opacity-25 py-3 d-flex justify-content-between align-items-center">
-        <h5 class="fw-bold mb-0"><i class="bi bi-people-fill text-success me-2"></i>Individual Player Leaderboard</h5>
+        <h5 class="fw-bold mb-0 text-white"><i class="bi bi-people-fill text-success me-2"></i>Individual Player Leaderboard</h5>
         <div style="max-width: 220px;">
           <input type="text" id="searchInput" class="form-control form-control-sm search-input" placeholder="Search player...">
         </div>
@@ -221,219 +236,4 @@
             <tr>
               <th scope="col" class="text-center" style="width: 50px;">#</th>
               <th scope="col" class="sortable" onclick="sortTable(1)">Player Name <i class="bi bi-arrow-down-up small ms-1 opacity-50"></i></th>
-              <th scope="col" class="sortable text-center" onclick="sortTable(2, true)">Total Score <i class="bi bi-arrow-down-up small ms-1 opacity-50"></i></th>
-              <th scope="col" class="sortable text-center" onclick="sortTable(3, true)">Hands <i class="bi bi-arrow-down-up small ms-1 opacity-50"></i></th>
-              <th scope="col" class="sortable text-center" onclick="sortTable(4, true)">Avg / Hand <i class="bi bi-arrow-down-up small ms-1 opacity-50"></i></th>
-              <th scope="col" class="text-center">High</th>
-              <th scope="col" class="text-center">Low</th>
-              <th scope="col" class="text-end pe-3">Match Scores</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody">
-            <!-- Table rows populated dynamically -->
-          </tbody>
-        </table>
-      </div>
-      <div class="card-footer bg-transparent border-top border-secondary border-opacity-25 text-muted small py-2">
-        <i class="bi bi-info-circle me-1"></i> Sorted by Total Score (Descending). Sergeant Major (SM) entries excluded from player stats.
-      </div>
-    </div>
-
-    <!-- Match Breakdown Section -->
-    <h5 class="fw-bold mb-3"><i class="bi bi-journal-text text-success me-2"></i>Match History</h5>
-    <div class="row g-3" id="matchCards">
-      <!-- Match Cards populated dynamically -->
-    </div>
-
-  </div>
-
-  <script>
-    // Player Data (Roy and Bob separated, SM excluded)
-    const players = [
-      { name: "Ian", total: 160, hands: 24, avgHand: 6.67, highHand: 9, lowHand: 4, matches: [39, 38, 33, 50] },
-      { name: "Andy", total: 158, hands: 24, avgHand: 6.58, highHand: 9, lowHand: 4, matches: [38, 38, 43, 39] },
-      { name: "Matt", total: 156, hands: 24, avgHand: 6.50, highHand: 17, lowHand: 3, matches: [36, 34, 34, 52] },
-      { name: "Dave", total: 151, hands: 24, avgHand: 6.29, highHand: 9, lowHand: 3, matches: [43, 38, 32, 38] },
-      { name: "Laurence", total: 148, hands: 24, avgHand: 6.17, highHand: 9, lowHand: 0, matches: [41, 42, 26, 39] },
-      { name: "Steve", total: 123, hands: 18, avgHand: 6.83, highHand: 9, lowHand: 1, matches: [41, null, 38, 44] },
-      { name: "Scott", total: 66, hands: 12, avgHand: 5.50, highHand: 8, lowHand: 3, matches: [31, null, 35, null] },
-      { name: "Robert", total: 42, hands: 6, avgHand: 7.00, highHand: 8, lowHand: 5, matches: [null, null, 42, null] },
-      { name: "Roy", total: 38, hands: 6, avgHand: 6.33, highHand: 8, lowHand: 5, matches: [null, null, 38, null] },
-      { name: "Bob", total: 33, hands: 6, avgHand: 5.50, highHand: 7, lowHand: 3, matches: [33, null, null, null] },
-      { name: "Neil", total: 32, hands: 6, avgHand: 5.33, highHand: 8, lowHand: 2, matches: [null, null, 32, null] }
-    ];
-
-    // Chronological Match Data
-    const matches = [
-      { id: 1, date: "16 Sept 2026", venue: "Away", score: 342, oppScore: 376, result: "L", diff: -34, topScorer: "Dave (43)" },
-      { id: 2, date: "23 Sept 2026", venue: "Away", score: 227, oppScore: 261, result: "L", diff: -34, topScorer: "Laurence (42)" },
-      { id: 3, date: "07 Oct 2026", venue: "Home (Woodborough Inn)", score: 353, oppScore: 358, result: "L", diff: -5, topScorer: "Andy (43)" },
-      { id: 4, date: "21 Oct 2026", venue: "Away", score: 337, oppScore: 354, result: "L", diff: -17, topScorer: "Matt (52)" }
-    ];
-
-    // Populate Table
-    function renderTable(data) {
-      const tbody = document.getElementById('tableBody');
-      tbody.innerHTML = '';
-      
-      data.forEach((p, idx) => {
-        let rankClass = 'rank-other';
-        if (idx === 0) rankClass = 'rank-1';
-        else if (idx === 1) rankClass = 'rank-2';
-        else if (idx === 2) rankClass = 'rank-3';
-
-        const matchBadges = p.matches.map(m => 
-          m !== null ? `<span class="score-pill">${m}</span>` : `<span class="score-pill score-pill-empty">-</span>`
-        ).join(' ');
-
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="text-center"><span class="badge-rank ${rankClass}">${idx + 1}</span></td>
-          <td class="fw-semibold text-white">${p.name}</td>
-          <td class="text-center fw-bold" style="color: var(--accent-color);">${p.total}</td>
-          <td class="text-center">${p.hands}</td>
-          <td class="text-center fw-semibold text-light">${p.avgHand.toFixed(2)}</td>
-          <td class="text-center text-success fw-semibold">${p.highHand}</td>
-          <td class="text-center text-danger">${p.lowHand}</td>
-          <td class="text-end pe-3">${matchBadges}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    // Populate Match Cards
-    function renderMatches() {
-      const container = document.getElementById('matchCards');
-      container.innerHTML = '';
-
-      matches.forEach(m => {
-        const col = document.createElement('div');
-        col.className = 'col-md-6 col-lg-3';
-
-        col.innerHTML = `
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-50">LOSS (${m.diff})</span>
-                <small class="text-muted"><i class="bi bi-calendar-event me-1"></i>${m.date}</small>
-              </div>
-              <h6 class="fw-bold text-white mb-1">Match ${m.id}</h6>
-              <div class="text-muted small mb-3"><i class="bi bi-geo-alt me-1"></i>${m.venue}</div>
-              <div class="d-flex justify-content-between align-items-center p-2 rounded mb-2" style="background-color: #0f172a;">
-                <span class="small text-muted">Team Score:</span>
-                <span class="fw-bold fs-5" style="color: var(--accent-color);">${m.score}</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center p-2 rounded mb-3" style="background-color: #0f172a;">
-                <span class="small text-muted">Opponent:</span>
-                <span class="fw-semibold text-muted">${m.oppScore}</span>
-              </div>
-              <div class="small text-muted"><i class="bi bi-star-fill text-warning me-1"></i>Top Scorer: <strong class="text-light">${m.topScorer}</strong></div>
-            </div>
-          </div>
-        `;
-        container.appendChild(col);
-      });
-    }
-
-    // Initialize Charts
-    function initCharts() {
-      Chart.defaults.color = '#94a3b8';
-      Chart.defaults.borderColor = '#334155';
-
-      // Player Averages Chart
-      const ctxPlayer = document.getElementById('playerChart').getContext('2d');
-      new Chart(ctxPlayer, {
-        type: 'bar',
-        data: {
-          labels: players.map(p => p.name),
-          datasets: [{
-            label: 'Avg Score / Hand',
-            data: players.map(p => p.avgHand),
-            backgroundColor: '#10b981',
-            borderRadius: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: { beginAtZero: true, max: 10 }
-          },
-          plugins: {
-            legend: { display: false }
-          }
-        }
-      });
-
-      // Match Comparison Chart
-      const ctxMatch = document.getElementById('matchChart').getContext('2d');
-      new Chart(ctxMatch, {
-        type: 'line',
-        data: {
-          labels: matches.map(m => `Match ${m.id}`),
-          datasets: [
-            {
-              label: 'Our Team',
-              data: matches.map(m => m.score),
-              borderColor: '#10b981',
-              backgroundColor: 'rgba(16, 185, 129, 0.1)',
-              fill: true,
-              tension: 0.3
-            },
-            {
-              label: 'Opponent',
-              data: matches.map(m => m.oppScore),
-              borderColor: '#ef4444',
-              borderDash: [5, 5],
-              fill: false,
-              tension: 0.3
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom' }
-          }
-        }
-      });
-    }
-
-    // Filter Function
-    document.getElementById('searchInput').addEventListener('keyup', function(e) {
-      const query = e.target.value.toLowerCase();
-      const filtered = players.filter(p => p.name.toLowerCase().includes(query));
-      renderTable(filtered);
-    });
-
-    // Sorting Helper
-    let sortAsc = false;
-    function sortTable(colIdx, isNumeric = false) {
-      sortAsc = !sortAsc;
-      players.sort((a, b) => {
-        let valA, valB;
-        if (colIdx === 1) { valA = a.name; valB = b.name; }
-        else if (colIdx === 2) { valA = a.total; valB = b.total; }
-        else if (colIdx === 3) { valA = a.hands; valB = b.hands; }
-        else if (colIdx === 4) { valA = a.avgHand; valB = b.avgHand; }
-
-        if (isNumeric) {
-          return sortAsc ? valA - valB : valB - valA;
-        } else {
-          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
-        }
-      });
-      renderTable(players);
-    }
-
-    // Initial Load
-    window.addEventListener('DOMContentLoaded', () => {
-      players.sort((a, b) => b.total - a.total);
-      renderTable(players);
-      renderMatches();
-      initCharts();
-    });
-  </script>
-</body>
-</html>
+              <th scope="col" class="sortable text-center" onclick="sortTable(2, true)">Total Score <i class="bi bi-arrow-down-up small ms-1 opacity-
