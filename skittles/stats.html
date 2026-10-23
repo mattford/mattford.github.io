@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skittles Team Stats Dashboard</title>
+  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
   <style>
     :root {
       --bg-dark: #0f172a;
@@ -22,8 +26,13 @@
     body {
       background-color: var(--bg-dark);
       color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       min-height: 100vh;
+    }
+
+    /* Headings and Typography Fixes for Dark Mode */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-main) !important;
     }
 
     .header-title {
@@ -35,9 +44,9 @@
     .card {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 1rem;
+      border-radius: 0.75rem;
       color: var(--text-main);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     }
 
     .kpi-card {
@@ -59,7 +68,7 @@
       font-weight: 800;
     }
 
-    /* Table Custom Styling */
+    /* Custom Table Styling with High Contrast Text */
     .table-dark-custom {
       --bs-table-bg: transparent;
       --bs-table-color: var(--text-main);
@@ -87,7 +96,7 @@
       background-color: rgba(255, 255, 255, 0.05);
     }
 
-    /* Badges */
+    /* Rank Badges */
     .badge-rank {
       width: 28px;
       height: 28px;
@@ -104,6 +113,7 @@
     .rank-3 { background-color: #d97706; color: #fff; }
     .rank-other { background-color: #334155; color: #cbd5e1; }
 
+    /* Score Badges */
     .score-pill {
       background-color: #0f172a;
       border: 1px solid var(--border-color);
@@ -112,15 +122,18 @@
       border-radius: 0.375rem;
       font-size: 0.8rem;
       font-weight: 600;
+      display: inline-block;
+      min-width: 32px;
+      text-align: center;
     }
 
     .score-pill-empty {
       color: var(--text-subtle);
       border-color: transparent;
-      background-color: transparent;
+      background-color: rgba(255, 255, 255, 0.02);
     }
 
-    /* Search Input */
+    /* Search Input Styling */
     .search-input {
       background-color: #0f172a;
       border: 1px solid var(--border-color);
@@ -137,7 +150,7 @@
       background-color: #0f172a;
       border-color: var(--accent-color);
       color: var(--text-main) !important;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
     }
 
     .sortable {
@@ -165,9 +178,9 @@
     <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
       <div>
         <h1 class="h2 header-title mb-0"><i class="bi bi-trophy-fill text-warning me-2"></i>Skittles Team Dashboard</h1>
-        <p class="text-light-muted mb-0 small">Season Performance &amp; Player Statistics (Hand-by-Hand Breakdown)</p>
+        <p class="text-light-muted mb-0 small">Season Performance &amp; Player Statistics</p>
       </div>
-      <span class="badge bg-secondary bg-opacity-25 text-light px-3 py-2 border border-secondary border-opacity-50">4 Matches Played</span>
+      <span class="badge bg-secondary bg-opacity-25 text-light px-3 py-2 border border-secondary border-opacity-50 fs-6">4 Matches Played</span>
     </header>
 
     <!-- Top KPI Row -->
@@ -236,4 +249,224 @@
             <tr>
               <th scope="col" class="text-center" style="width: 50px;">#</th>
               <th scope="col" class="sortable" onclick="sortTable(1)">Player Name <i class="bi bi-arrow-down-up small ms-1 opacity-50"></i></th>
-              <th scope="col" class="sortable text-center" onclick="sortTable(2, true)">Total Score <i class="bi bi-arrow-down-up small ms-1 opacity-
+              <th scope="col" class="sortable text-center" onclick="sortTable(2, true)">Total Score <i class="bi bi-arrow-down-up small ms-1 opacity-50"></i></th>
+              <th scope="col" class="sortable text-center" onclick="sortTable(3, true)">Hands <i class="bi bi-arrow-down-up small ms-1 opacity-50"></i></th>
+              <th scope="col" class="sortable text-center" onclick="sortTable(4, true)">Avg / Hand <i class="bi bi-arrow-down-up small ms-1 opacity-50"></i></th>
+              <th scope="col" class="text-center">High</th>
+              <th scope="col" class="text-center">Low</th>
+              <th scope="col" class="text-end pe-3">Match Scores</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Table rows populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer bg-transparent border-top border-secondary border-opacity-25 text-light-muted small py-2">
+        <i class="bi bi-info-circle me-1"></i> Click table headers to sort player statistics.
+      </div>
+    </div>
+
+    <!-- Match History Section -->
+    <h5 class="fw-bold mb-3 text-white"><i class="bi bi-journal-text text-success me-2"></i>Match History</h5>
+    <div class="row g-3" id="matchCards">
+      <!-- Match Cards populated dynamically -->
+    </div>
+
+  </div>
+
+  <script>
+    // Raw Player Data
+    const players = [
+      { name: "Ian", total: 160, hands: 24, avgHand: 6.67, highHand: 9, lowHand: 4, matches: [39, 38, 33, 50] },
+      { name: "Andy", total: 158, hands: 24, avgHand: 6.58, highHand: 9, lowHand: 4, matches: [38, 38, 43, 39] },
+      { name: "Matt", total: 156, hands: 24, avgHand: 6.50, highHand: 17, lowHand: 3, matches: [36, 34, 34, 52] },
+      { name: "Dave", total: 151, hands: 24, avgHand: 6.29, highHand: 9, lowHand: 3, matches: [43, 38, 32, 38] },
+      { name: "Laurence", total: 148, hands: 24, avgHand: 6.17, highHand: 9, lowHand: 0, matches: [41, 42, 26, 39] },
+      { name: "Steve", total: 123, hands: 18, avgHand: 6.83, highHand: 9, lowHand: 1, matches: [41, null, 38, 44] },
+      { name: "Scott", total: 66, hands: 12, avgHand: 5.50, highHand: 8, lowHand: 3, matches: [31, null, 35, null] },
+      { name: "Robert", total: 42, hands: 6, avgHand: 7.00, highHand: 8, lowHand: 5, matches: [null, null, 42, null] },
+      { name: "Roy", total: 38, hands: 6, avgHand: 6.33, highHand: 8, lowHand: 5, matches: [null, null, 38, null] },
+      { name: "Bob", total: 33, hands: 6, avgHand: 5.50, highHand: 7, lowHand: 3, matches: [33, null, null, null] },
+      { name: "Neil", total: 32, hands: 6, avgHand: 5.33, highHand: 8, lowHand: 2, matches: [null, null, 32, null] }
+    ];
+
+    // Match Details
+    const matches = [
+      { id: 1, date: "16 Sept 2026", venue: "Away", score: 342, oppScore: 376, result: "L", diff: -34, topScorer: "Dave (43)" },
+      { id: 2, date: "23 Sept 2026", venue: "Away", score: 227, oppScore: 261, result: "L", diff: -34, topScorer: "Laurence (42)" },
+      { id: 3, date: "07 Oct 2026", venue: "Home (Woodborough Inn)", score: 353, oppScore: 358, result: "L", diff: -5, topScorer: "Andy (43)" },
+      { id: 4, date: "21 Oct 2026", venue: "Away", score: 337, oppScore: 354, result: "L", diff: -17, topScorer: "Matt (52)" }
+    ];
+
+    // Populate Leaderboard Table
+    function renderTable(data) {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+      
+      data.forEach((p, idx) => {
+        let rankClass = 'rank-other';
+        if (idx === 0) rankClass = 'rank-1';
+        else if (idx === 1) rankClass = 'rank-2';
+        else if (idx === 2) rankClass = 'rank-3';
+
+        const matchBadges = p.matches.map(m => 
+          m !== null ? `<span class="score-pill">${m}</span>` : `<span class="score-pill score-pill-empty">-</span>`
+        ).join(' ');
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="text-center"><span class="badge-rank ${rankClass}">${idx + 1}</span></td>
+          <td class="fw-semibold text-white">${p.name}</td>
+          <td class="text-center fw-bold" style="color: var(--accent-color);">${p.total}</td>
+          <td class="text-center text-light-muted">${p.hands}</td>
+          <td class="text-center fw-semibold text-white">${p.avgHand.toFixed(2)}</td>
+          <td class="text-center text-success fw-semibold">${p.highHand}</td>
+          <td class="text-center text-danger">${p.lowHand}</td>
+          <td class="text-end pe-3">${matchBadges}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Populate Match History Cards
+    function renderMatches() {
+      const container = document.getElementById('matchCards');
+      container.innerHTML = '';
+
+      matches.forEach(m => {
+        const col = document.createElement('div');
+        col.className = 'col-md-6 col-lg-3';
+
+        col.innerHTML = `
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-50">LOSS (${m.diff})</span>
+                  <small class="text-light-muted"><i class="bi bi-calendar-event me-1"></i>${m.date}</small>
+                </div>
+                <h6 class="fw-bold text-white mb-1">Match ${m.id}</h6>
+                <div class="text-light-muted small mb-3"><i class="bi bi-geo-alt me-1"></i>${m.venue}</div>
+              </div>
+
+              <div>
+                <div class="d-flex justify-content-between align-items-center p-2 rounded mb-2" style="background-color: #0f172a;">
+                  <span class="small text-light-muted">Team Score:</span>
+                  <span class="fw-bold fs-5" style="color: var(--accent-color);">${m.score}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center p-2 rounded mb-3" style="background-color: #0f172a;">
+                  <span class="small text-light-muted">Opponent:</span>
+                  <span class="fw-semibold text-light-muted">${m.oppScore}</span>
+                </div>
+                <div class="small text-light-muted"><i class="bi bi-star-fill text-warning me-1"></i>Top: <strong class="text-white">${m.topScorer}</strong></div>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(col);
+      });
+    }
+
+    // Chart.js Configuration
+    function initCharts() {
+      Chart.defaults.color = '#cbd5e1';
+      Chart.defaults.borderColor = '#334155';
+
+      // Player Averages Chart
+      const ctxPlayer = document.getElementById('playerChart').getContext('2d');
+      new Chart(ctxPlayer, {
+        type: 'bar',
+        data: {
+          labels: players.map(p => p.name),
+          datasets: [{
+            label: 'Avg Score / Hand',
+            data: players.map(p => p.avgHand),
+            backgroundColor: '#10b981',
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, max: 8 }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+
+      // Match Comparison Chart
+      const ctxMatch = document.getElementById('matchChart').getContext('2d');
+      new Chart(ctxMatch, {
+        type: 'line',
+        data: {
+          labels: matches.map(m => `Match ${m.id}`),
+          datasets: [
+            {
+              label: 'Our Team',
+              data: matches.map(m => m.score),
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              fill: true,
+              tension: 0.3
+            },
+            {
+              label: 'Opponent',
+              data: matches.map(m => m.oppScore),
+              borderColor: '#ef4444',
+              borderDash: [5, 5],
+              fill: false,
+              tension: 0.3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    }
+
+    // Search Filtering
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase();
+      const filtered = players.filter(p => p.name.toLowerCase().includes(query));
+      renderTable(filtered);
+    });
+
+    // Dynamic Column Sorting
+    let sortAsc = false;
+    function sortTable(colIdx, isNumeric = false) {
+      sortAsc = !sortAsc;
+      players.sort((a, b) => {
+        let valA, valB;
+        if (colIdx === 1) { valA = a.name; valB = b.name; }
+        else if (colIdx === 2) { valA = a.total; valB = b.total; }
+        else if (colIdx === 3) { valA = a.hands; valB = b.hands; }
+        else if (colIdx === 4) { valA = a.avgHand; valB = b.avgHand; }
+
+        if (isNumeric) {
+          return sortAsc ? valA - valB : valB - valA;
+        } else {
+          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+      });
+      renderTable(players);
+    }
+
+    // Execute scripts on document load
+    window.addEventListener('DOMContentLoaded', () => {
+      players.sort((a, b) => b.total - a.total);
+      renderTable(players);
+      renderMatches();
+      initCharts();
+    });
+  </script>
+</body>
+</html>
