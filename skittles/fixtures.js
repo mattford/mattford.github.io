@@ -911,13 +911,85 @@ window.FIXTURE_DATA = {
       "date": "2026-11-18",
       "competition": "knockout_cup",
       "round": "Second Round",
-      "note": "Second Round Knock Out Cup"
+      "home": "P Baker",
+      "away": "B Cox"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "knockout_cup",
+      "round": "Second Round",
+      "home": "C Abbiss",
+      "away": "B Stephens"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "knockout_cup",
+      "round": "Second Round",
+      "home": "S Midgley",
+      "away": "J Fiddler"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "knockout_cup",
+      "round": "Second Round",
+      "home": "J Torrens-Spence",
+      "away": "G Croker"
     },
     {
       "date": "2026-11-18",
       "competition": "second_chance_cup",
       "round": "First Round",
-      "note": "First Round Second Chance Cup"
+      "home": "P Clatworthy",
+      "away": "M Rippon"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "second_chance_cup",
+      "round": "First Round",
+      "home": "P McErlean",
+      "away": "M Boley"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "second_chance_cup",
+      "round": "First Round",
+      "home": "R Stone",
+      "away": "M Woodliffe"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "second_chance_cup",
+      "round": "First Round",
+      "home": "I Durston",
+      "away": "S Clatworthy"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "second_chance_cup",
+      "round": "First Round",
+      "home": "M Brooks",
+      "away": "S Hutchings"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "second_chance_cup",
+      "round": "First Round",
+      "home": "A Pinn",
+      "away": "A Fear"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "second_chance_cup",
+      "round": "First Round",
+      "home": "M Wall",
+      "away": "P Culkin"
+    },
+    {
+      "date": "2026-11-18",
+      "competition": "second_chance_cup",
+      "round": "First Round",
+      "home": "C Pegler",
+      "away": "M Anderson"
     },
     {
       "date": "2026-11-25",
